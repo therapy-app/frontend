@@ -1,1 +1,56 @@
-<p>sign-up works!</p>
+<form>
+    <div class="tui-form__row">
+        <tui-input>
+            {{ "ACCOUNT.FIRSTNAME" | translate }}<span class="tui-required"></span>
+        </tui-input>
+        <tui-field-error></tui-field-error>
+    </div>
+    <div class="tui-form__row">
+        <tui-input>
+            {{ "ACCOUNT.LASTNAME" | translate }}<span class="tui-required"></span>
+        </tui-input>
+        <tui-field-error></tui-field-error>
+    </div>
+    <div class="tui-form__row">
+        <tui-input>
+            {{ "ACCOUNT.EMAIL" | translate }}<span class="tui-required"></span>
+        </tui-input>
+        <tui-field-error></tui-field-error>
+    </div>
+    <div class="tui-form__row">
+        <tui-input>
+            {{ "ACCOUNT.ADDRESS" | translate }}<span class="tui-required"></span>
+        </tui-input>
+        <tui-field-error></tui-field-error>
+    </div>
+    <div class="tui-form__row tui-form__row_multi-fields">
+        <div class="tui-form__multi-field">
+            <tui-input>
+                {{ "ACCOUNT.ZIPCODE" | translate }}<span class="tui-required"></span>
+            </tui-input>
+            <tui-field-error></tui-field-error>
+        </div>
+        <div class="tui-form__multi-field">
+            <tui-input>
+                {{ "ACCOUNT.LOCATION" | translate }}<span class="tui-required"></span>
+            </tui-input>
+            <tui-field-error></tui-field-error>
+        </div>
+    </div>
+
+    // TODO Add Phonenumber & Birthdate
+
+    <div class="tui-form__row">
+        <tui-input-phone-international
+            [countries]="countries"
+            [(countryIsoCode)]="countryIsoCode"
+            [tuiTextfieldLabelOutside]="true"
+        ></tui-input-phone-international>
+    </div>
+    <div class="tui-form__row">
+        <tui-input-password formControlName="passwordValue">
+            {{ "ACCOUNT.PASSWORD" | translate }}<span class="tui-required"></span>
+        </tui-input-password>
+        <tui-field-error></tui-field-error>
+    </div>
+</form>

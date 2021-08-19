@@ -1,0 +1,13 @@
+{
+    "ACCOUNT": {
+        "FIRSTNAME": "First name",
+        "LASTNAME": "Last name",
+        "EMAIL": "E-Mail",
+        "ADDRESS": "Address",
+        "ZIPCODE": "Zipcode",
+        "LOCATION": "Location",
+        "PHONE_NUMBER": "Phonenumber",
+        "PASSWORD": "Password",
+        "BIRTHDATE": "Birthdate"
+    }
+}
