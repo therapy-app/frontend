@@ -1,13 +1,23 @@
 {
-    "ACCOUNT": {
-        "FIRSTNAME": "First name",
-        "LASTNAME": "Last name",
-        "EMAIL": "E-Mail",
-        "ADDRESS": "Address",
-        "ZIPCODE": "Zipcode",
-        "LOCATION": "Location",
-        "PHONE_NUMBER": "Phonenumber",
-        "PASSWORD": "Password",
-        "BIRTHDATE": "Birthdate"
-    }
+  "AUTH": {
+    "TITLE_NEW": "Manage your practice with us",
+    "TITLE_EXISTING": "Welcome back",
+    "TITLE_JOIN": "Join your practice team",
+    "CREATE_ACCOUNT": "Create account",
+    "SIGNIN": "Sign in to your account",
+    "ACCOUNT_EXISTING": "Have an account?",
+    "ACCOUNT_INEXISTENT": "Don't have an account?",
+    "FORGOT_PASSWORD": "Forgot password?"
+  },
+  "ACCOUNT": {
+    "FIRSTNAME": "First name",
+    "LASTNAME": "Last name",
+    "EMAIL": "E-Mail",
+    "ADDRESS": "Address",
+    "ZIPCODE": "Zipcode",
+    "LOCATION": "Location",
+    "PHONE_NUMBER": "Phonenumber",
+    "PASSWORD": "Password",
+    "BIRTHDATE": "Birthdate"
+  }
 }

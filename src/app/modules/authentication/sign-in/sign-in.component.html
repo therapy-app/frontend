@@ -1,14 +1,27 @@
-<form>
-    <div class="tui-form__row">
-        <tui-input>
-            {{ "ACCOUNT.FIRSTNAME" | translate }}<span class="tui-required"></span>
-        </tui-input>
-        <tui-field-error></tui-field-error>
-    </div>
-    <div class="tui-form__row">
-        <tui-input-password formControlName="passwordValue">
-            {{ "ACCOUNT.PASSWORD" | translate }}<span class="tui-required"></span>
-        </tui-input-password>
-        <tui-field-error></tui-field-error>
-    </div>
+<form [formGroup]="signInForm">
+  <h1>{{ 'AUTH.TITLE_EXISTING' | translate}}</h1>
+  <div class="tui-form__row">
+      <tui-input formControlName="email">
+          {{ "ACCOUNT.EMAIL" | translate }}<span class="tui-required"></span>
+      </tui-input>
+      <tui-field-error></tui-field-error>
+  </div>
+  <div class="tui-form__row">
+    <tui-input-password formControlName="password">
+        {{ "ACCOUNT.PASSWORD" | translate }}<span class="tui-required"></span>
+    </tui-input-password>
+    <tui-field-error></tui-field-error>
+  </div>
+  <button
+    class="tui-form__row"
+    tuiButton
+    type="submit"
+    appearance="primary"
+    routerLink="/"
+  > {{ 'AUTH.SIGNIN' | translate}}
+  </button>
+  <div class="redirects row justify-content-between">
+    <a routerLink="/auth/signup" class="col-6">{{ 'AUTH.ACCOUNT_INEXISTENT' | translate }}</a>
+    <a class="col-6">{{ 'AUTH.FORGOT_PASSWORD' | translate }}</a>
+  </div>
 </form>

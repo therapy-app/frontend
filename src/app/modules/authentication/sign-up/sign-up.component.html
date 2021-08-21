@@ -1,56 +1,58 @@
-<form>
-    <div class="tui-form__row">
-        <tui-input>
-            {{ "ACCOUNT.FIRSTNAME" | translate }}<span class="tui-required"></span>
-        </tui-input>
-        <tui-field-error></tui-field-error>
-    </div>
-    <div class="tui-form__row">
-        <tui-input>
-            {{ "ACCOUNT.LASTNAME" | translate }}<span class="tui-required"></span>
-        </tui-input>
-        <tui-field-error></tui-field-error>
-    </div>
-    <div class="tui-form__row">
-        <tui-input>
-            {{ "ACCOUNT.EMAIL" | translate }}<span class="tui-required"></span>
-        </tui-input>
-        <tui-field-error></tui-field-error>
-    </div>
-    <div class="tui-form__row">
-        <tui-input>
-            {{ "ACCOUNT.ADDRESS" | translate }}<span class="tui-required"></span>
-        </tui-input>
-        <tui-field-error></tui-field-error>
-    </div>
-    <div class="tui-form__row tui-form__row_multi-fields">
-        <div class="tui-form__multi-field">
-            <tui-input>
-                {{ "ACCOUNT.ZIPCODE" | translate }}<span class="tui-required"></span>
-            </tui-input>
-            <tui-field-error></tui-field-error>
-        </div>
-        <div class="tui-form__multi-field">
-            <tui-input>
-                {{ "ACCOUNT.LOCATION" | translate }}<span class="tui-required"></span>
-            </tui-input>
-            <tui-field-error></tui-field-error>
-        </div>
-    </div>
-
-    // TODO Add Phonenumber & Birthdate
-
-    <div class="tui-form__row">
-        <tui-input-phone-international
-            [countries]="countries"
-            [(countryIsoCode)]="countryIsoCode"
-            [tuiTextfieldLabelOutside]="true"
-        ></tui-input-phone-international>
-    </div>
-    <div class="tui-form__row">
-        <tui-input-password formControlName="passwordValue">
-            {{ "ACCOUNT.PASSWORD" | translate }}<span class="tui-required"></span>
-        </tui-input-password>
-        <tui-field-error></tui-field-error>
-    </div>
+<form [formGroup]="signUpForm">
+  <h1>{{ 'AUTH.TITLE_NEW' | translate}}</h1>
+  <div class="tui-form__row">
+      <tui-input formControlName="firstname">
+          {{ "ACCOUNT.FIRSTNAME" | translate }}<span class="tui-required"></span>
+      </tui-input>
+      <tui-field-error></tui-field-error>
+  </div>
+  <div class="tui-form__row">
+      <tui-input formControlName="lastname">
+          {{ "ACCOUNT.LASTNAME" | translate }}<span class="tui-required"></span>
+      </tui-input>
+      <tui-field-error></tui-field-error>
+  </div>
+  <div class="tui-form__row">
+      <tui-input formControlName="email">
+          {{ "ACCOUNT.EMAIL" | translate }}<span class="tui-required"></span>
+      </tui-input>
+      <tui-field-error></tui-field-error>
+  </div>
+  <div class="tui-form__row">
+      <tui-input formControlName="address">
+          {{ "ACCOUNT.ADDRESS" | translate }}<span class="tui-required"></span>
+      </tui-input>
+      <tui-field-error></tui-field-error>
+  </div>
+  <div class="tui-form__row tui-form__row_multi-fields">
+      <div class="tui-form__multi-field">
+          <tui-input formControlName="zipcode">
+              {{ "ACCOUNT.ZIPCODE" | translate }}<span class="tui-required"></span>
+          </tui-input>
+          <tui-field-error></tui-field-error>
+      </div>
+      <div class="tui-form__multi-field">
+          <tui-input formControlName="location">
+              {{ "ACCOUNT.LOCATION" | translate }}<span class="tui-required"></span>
+          </tui-input>
+          <tui-field-error></tui-field-error>
+      </div>
+  </div>
+  <div class="tui-form__row">
+      <tui-input-password formControlName="password">
+          {{ "ACCOUNT.PASSWORD" | translate }}<span class="tui-required"></span>
+      </tui-input-password>
+      <tui-field-error></tui-field-error>
+  </div>
+  <button
+    class="tui-form__row"
+    tuiButton
+    type="submit"
+    appearance="primary"
+    routerLink="/"
+  > {{ 'AUTH.CREATE_ACCOUNT' | translate}}
+  </button>
+  <div class="redirects row justify-content-between">
+    <a routerLink="/auth/signin" class="col-6">{{ 'AUTH.ACCOUNT_EXISTING' | translate }}</a>
+  </div>
 </form>
