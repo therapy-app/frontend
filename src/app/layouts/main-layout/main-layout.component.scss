@@ -2,10 +2,15 @@ nav {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  height: 64px;
   div {
     display: flex;
     flex-direction: row;
     gap: 15px;
-    height: 84px;
+    margin: auto 0;
   }
+}
+.main-wrapper {
+  background-color: #F9F9F9;
+  height: calc(100vh - 64px);
 }
