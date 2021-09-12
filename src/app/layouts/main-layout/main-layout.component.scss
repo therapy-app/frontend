@@ -1,8 +1,9 @@
-nav {
+nav.top-nav {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   height: 64px;
+  background-color: #FFF;
   div {
     display: flex;
     flex-direction: row;
@@ -10,7 +11,21 @@ nav {
     margin: auto 0;
   }
 }
+
+nav.side-nav {
+  display: flex;
+  flex-direction: column;
+  background-color: #FFF;
+  width: 250px;
+  min-height: 100%;
+}
+
 .main-wrapper {
   background-color: #F9F9F9;
-  height: calc(100vh - 64px);
+  min-height: 100vh;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
 }

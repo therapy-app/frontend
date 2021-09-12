@@ -1,0 +1,19 @@
+button {
+  width: 175px;
+  max-height: 50px;
+}
+
+.content-island-short {
+  height: 175px !important;
+}
+
+.content-island, .content-island-short {
+  box-shadow: 0 5px 5px #F4F4F4;
+  height: 275px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.calendar {
+  min-height: 100%;
+}

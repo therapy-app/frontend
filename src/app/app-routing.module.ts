@@ -1,7 +1,9 @@
+import { PatientsModule } from './modules/patients/patients.module';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { FunctionCall } from '@angular/compiler';
 
 const routes: Routes = [
   {
@@ -10,9 +12,21 @@ const routes: Routes = [
     children: [
       {
         path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full'
+      },
+      {
+        path: 'dashboard',
         loadChildren: () =>
           import('./modules/dashboard/dashboard.module').then(
             (m) => m.DashboardModule
+          ),
+      },
+      {
+        path: 'patients',
+        loadChildren: () =>
+          import('./modules/patients/patients.module').then(
+            (m) => m.PatientsModule
           ),
       },
     ],
