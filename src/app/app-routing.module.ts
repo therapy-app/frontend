@@ -1,3 +1,4 @@
+import { MainLayoutModule } from './layouts/main-layout/main-layout.module';
 import { PatientsModule } from './modules/patients/patients.module';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
@@ -8,28 +9,10 @@ import { FunctionCall } from '@angular/compiler';
 const routes: Routes = [
   {
     path: '',
-    component: MainLayoutComponent,
-    children: [
-      {
-        path: '',
-        redirectTo: 'dashboard',
-        pathMatch: 'full'
-      },
-      {
-        path: 'dashboard',
-        loadChildren: () =>
-          import('./modules/dashboard/dashboard.module').then(
-            (m) => m.DashboardModule
-          ),
-      },
-      {
-        path: 'patients',
-        loadChildren: () =>
-          import('./modules/patients/patients.module').then(
-            (m) => m.PatientsModule
-          ),
-      },
-    ],
+    loadChildren: () =>
+      import('./layouts/main-layout/main-layout.module').then(
+        (m) => m.MainLayoutModule
+      ),
   },
   {
     path: 'auth',

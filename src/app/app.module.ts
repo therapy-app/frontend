@@ -19,7 +19,7 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { TuiAvatarModule } from '@taiga-ui/kit';
 
 @NgModule({
-  declarations: [AppComponent, MainLayoutComponent, AuthLayoutComponent],
+  declarations: [AppComponent, AuthLayoutComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -35,7 +35,6 @@ import { TuiAvatarModule } from '@taiga-ui/kit';
         deps: [HttpClient],
       },
     }),
-    TuiAvatarModule,
   ],
   providers: [{ provide: TUI_SANITIZER, useClass: NgDompurifySanitizer }],
   bootstrap: [AppComponent],

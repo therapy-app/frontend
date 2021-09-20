@@ -16,16 +16,35 @@ nav.side-nav {
   display: flex;
   flex-direction: column;
   background-color: #FFF;
-  width: 250px;
+  width: 75px;
   min-height: 100%;
 }
 
-.main-wrapper {
-  background-color: #F9F9F9;
-  min-height: 100vh;
+mat-drawer-container {
+  width: 100%;
+  height: 100%;
 }
 
-.content {
-  display: flex;
-  flex-direction: row;
+
+// max width adjusted to sidenav
+
+@media (max-width: 768px) {
+  .side-nav {
+    display: none;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    max-width: calc(960px - 125px);
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    max-width: calc(1140px - 125px);
+  }
+}
+@media (min-width: 1400px) {
+  .container {
+    max-width: calc(1320px - 125px);
+  }
 }

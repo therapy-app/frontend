@@ -1,23 +1,22 @@
-<div class="main-wrapper">
-  <nav class="top-nav container-fluid">
-    <div>
-      <p>therapyapp</p>
-    </div>
-    <div>
-      <tui-avatar
-        text="max muster"
-        [rounded]="true"
-      ></tui-avatar>
-    </div>
-  </nav>
-  <div class="content">
-    <nav class="side-nav">
-      <div>
-        <p></p>
-      </div>
-    </nav>
+<nav class="top-nav container-fluid">
+  <div>
+    <button (click)="onSinenavToggle()">test</button>
+    <p>therapyapp</p>
+  </div>
+  <div>
+    <tui-avatar
+      text="max muster"
+      [rounded]="true"
+    ></tui-avatar>
+  </div>
+</nav>
+<mat-drawer-container>
+  <mat-drawer #drawer mode="side" class="side-nav" opened>
+    <app-side-nav-content></app-side-nav-content>
+  </mat-drawer>
+  <mat-drawer-content [@onMainContentChange]="onSideNavChange ? 'open' : 'close'">
     <div class="container-fluid container">
         <router-outlet></router-outlet>
     </div>
-  </div>
-</div>
+  </mat-drawer-content>
+</mat-drawer-container>
