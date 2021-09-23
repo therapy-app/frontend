@@ -9,7 +9,18 @@ nav.top-nav {
     flex-direction: row;
     gap: 15px;
     margin: auto 0;
+    .menu-button {
+      cursor: pointer;
+      padding: 0 12px;
+    }
+
+    .logo {
+      font-weight: 600;
+      font-size: 15px;
+      width: 265px;
+    }
   }
+
 }
 
 nav.side-nav {
@@ -22,7 +33,7 @@ nav.side-nav {
 
 mat-drawer-container {
   width: 100%;
-  height: 100%;
+  height: calc(100% - 75px);
 }
 
 

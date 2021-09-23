@@ -12,13 +12,13 @@ import { SidenavService } from './sidenav.service';
 export class MainLayoutComponent {
 
   public onSideNavChange: boolean;
-  public sideNavState: boolean = true;
+  public sideNavState = true;
 
-  constructor(private _sidenavService: SidenavService) {}
+  constructor(private sidenavService: SidenavService) {}
 
-  onSinenavToggle() {
-    this.sideNavState = !this.sideNavState
+  onSinenavToggle(): void {
+    this.sideNavState = !this.sideNavState;
     this.onSideNavChange = this.sideNavState;
-    this._sidenavService.sideNavState$.next(this.sideNavState)
+    this.sidenavService.sideNavState$.next(this.sideNavState);
   }
 }

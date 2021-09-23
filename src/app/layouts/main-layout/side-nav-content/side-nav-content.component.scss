@@ -1,0 +1,14 @@
+.content {
+  height: 100%;
+  .title {
+    margin-left: 24px;
+  }
+  .active {
+    color: #526ed3;
+    font-weight: 500;
+  }
+}
+
+:host ::ng-deep .mat-list-base .mat-list-item .mat-list-item-content {
+  padding: 0 24px;
+}

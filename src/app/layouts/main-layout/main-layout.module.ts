@@ -1,3 +1,4 @@
+import { TuiButtonModule } from '@taiga-ui/core';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TaigaUiModule } from 'src/app/shared/taiga-ui.module';
@@ -8,6 +9,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import { SideNavContentComponent } from './side-nav-content/side-nav-content.component';
 import { SidenavService } from './sidenav.service';
+import { IconsModule } from 'src/app/shared/icons.module';
 
 export const routes: Routes = [
   {
@@ -45,7 +47,8 @@ export const routes: Routes = [
     RouterModule.forChild(routes),
     TuiAvatarModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    IconsModule
   ],
   providers: [SidenavService],
   exports: []

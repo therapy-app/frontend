@@ -4,12 +4,12 @@ import { trigger, state, style, transition, animate, animateChild, query } from 
 export const onSideNavChange = trigger('onSideNavChange', [
   state('close',
     style({
-      'min-width': '50px'
+      'min-width': '74px'
     })
   ),
   state('open',
     style({
-      'min-width': '200px'
+      'min-width': '224px'
     })
   ),
   transition('close => open', animate('250ms ease-in')),
@@ -20,12 +20,12 @@ export const onSideNavChange = trigger('onSideNavChange', [
 export const onMainContentChange = trigger('onMainContentChange', [
   state('close',
     style({
-      'margin-left': '62px'
+      'margin-left': '86px'
     })
   ),
   state('open',
     style({
-      'margin-left': '200px'
+      'margin-left': '224px'
     })
   ),
   transition('close => open', animate('250ms ease-in')),
