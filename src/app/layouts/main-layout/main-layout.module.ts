@@ -1,15 +1,17 @@
-import { TuiButtonModule } from '@taiga-ui/core';
+import { TuiButtonModule, TuiLinkModule } from '@taiga-ui/core';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TaigaUiModule } from 'src/app/shared/taiga-ui.module';
 import { RouterModule, Routes } from '@angular/router';
 import { MainLayoutComponent } from './main-layout.component';
-import { TuiAvatarModule } from '@taiga-ui/kit';
+import { TuiAccordionModule, TuiAvatarModule } from '@taiga-ui/kit';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import { SideNavContentComponent } from './side-nav-content/side-nav-content.component';
 import { SidenavService } from './sidenav.service';
 import { IconsModule } from 'src/app/shared/icons.module';
+import {TuiBreadcrumbsModule} from '@taiga-ui/kit';
+import {TuiLabelModule} from '@taiga-ui/core';
 
 export const routes: Routes = [
   {
@@ -48,7 +50,11 @@ export const routes: Routes = [
     TuiAvatarModule,
     MatSidenavModule,
     MatListModule,
-    IconsModule
+    IconsModule,
+    TuiAccordionModule,
+    TuiBreadcrumbsModule,
+    TuiLinkModule,
+    TuiLabelModule
   ],
   providers: [SidenavService],
   exports: []

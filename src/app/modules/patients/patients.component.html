@@ -1,1 +1,30 @@
-<p>patients works!</p>
+<h1 class="tui-text_h6">Patients</h1>
+<div class="filters row mb-3">
+  <tui-primitive-textfield
+    iconAlign="left"
+    tuiTextfieldSize="s"
+    iconContent="tuiIconSearch"
+  >
+    Search
+  </tui-primitive-textfield>
+  <div class="justify-content-end">
+
+  </div>
+</div>
+<div class="row">
+  <table tuiTable [columns]="columns">
+    <thead>
+      <tr tuiThGroup>
+        <th tuiTh [resizable]="true">Name</th>
+        <th tuiTh>Balance</th>
+      </tr>
+    </thead>
+    <tbody tuiTbody [data]="data">
+      <tr *tuiRow="let item of data" tuiTr>
+        <td *tuiCell="'balance'" tuiTd>
+          {{ item.balance }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

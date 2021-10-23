@@ -9,16 +9,30 @@ import { SidenavService } from './sidenav.service';
   styleUrls: ['./main-layout.component.scss'],
   animations: [ onMainContentChange ]
 })
-export class MainLayoutComponent {
+export class MainLayoutComponent implements OnInit{
 
   public onSideNavChange: boolean;
   public sideNavState = true;
 
+  breadcrumbRoutes = [
+    {
+        caption: 'Therapyapp',
+        routerLink: '/components/select',
+    },
+    {
+        caption: 'Dashboard',
+        routerLink: '/navigation/breadcrumbs',
+        routerLinkActiveOptions: {exact: true},
+    },
+];
+
   constructor(private sidenavService: SidenavService) {}
+
+  ngOnInit(): void {
+  }
 
   onSinenavToggle(): void {
     this.sideNavState = !this.sideNavState;
     this.onSideNavChange = this.sideNavState;
-    this.sidenavService.sideNavState$.next(this.sideNavState);
   }
 }

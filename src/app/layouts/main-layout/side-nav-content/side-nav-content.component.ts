@@ -2,6 +2,8 @@ import { AfterContentInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { onSideNavChange, animateText } from '../../../shared/animations';
 import { SidenavService } from '../sidenav.service';
+import { debounceTime } from 'rxjs/operators';
+import { merge } from 'rxjs';
 
 @Component({
   selector: 'app-side-nav-content',
@@ -14,15 +16,31 @@ export class SideNavContentComponent implements OnInit {
   public linkText = true;
 
   public pages: any[] = [
-    { name: 'Dashboard', link: 'dashboard', icon: 'grid', active: false },
-    { name: 'Patients', link: 'patients', icon: 'user', active: false },
+    {
+      caption: 'Dashboard',
+      routerLink: 'dashboard',
+      icon: 'grid',
+      active: false,
+      multiMenu: false,
+    },
+    {
+      caption: 'Patients',
+      routerLink: 'patients',
+      icon: 'user',
+      active: false,
+      multiMenu: true,
+      childPages: [
+        { caption: 'All Patients', routerLink: '', active: false },
+        { caption: 'All Patients', routerLink: '', active: false },
+      ],
+    },
   ];
 
   constructor(
     private sidenavService: SidenavService,
     private router: Router,
     private route: ActivatedRoute
-    ) {
+  ) {
     this.sidenavService.sideNavState$.subscribe((res) => {
       this.sideNavState = res;
       setTimeout(() => {
@@ -30,12 +48,14 @@ export class SideNavContentComponent implements OnInit {
       }, 200);
     });
   }
-
   ngOnInit(): void {
-    this.route.queryParams.subscribe(() => {
+    merge(
+      this.route.params,
+      this.router.events.pipe(debounceTime(0))
+    ).subscribe(() => {
       this.pages.forEach((page) => {
         page.active = false;
-        if (this.router.url.indexOf(page.link) > -1) page.active = true;
+        if (this.router.url.indexOf(page.routerLink) > -1) page.active = true;
       });
     });
   }

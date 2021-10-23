@@ -1,14 +1,45 @@
 .content {
   height: 100%;
-  .title {
-    margin-left: 24px;
+
+  .feature-route {
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+    .title {
+      font-weight: 500;
+      margin-left: 24px;
+      font-size: 16px;
+    }
   }
   .active {
     color: #526ed3;
-    font-weight: 500;
+    font-weight: 600 !important;
+  }
+  .sub-pages {
+    a {
+      color: #000;
+      text-decoration: none;
+      line-height: 2.75rem;
+    }
   }
 }
 
-:host ::ng-deep .mat-list-base .mat-list-item .mat-list-item-content {
-  padding: 0 24px;
+.logo {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 15px;
+  width: 265px;
+}
+
+:host ::ng-deep {
+  tui-accordion-item {
+    .wrapper:after,
+    .header {
+      border: 0 !important;
+    }
+    .header_open {
+      background: rgba(0, 0, 0, 0.04);
+    }
+  }
 }

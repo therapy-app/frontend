@@ -1,22 +1,23 @@
-<nav class="top-nav container-fluid">
-  <div>
-    <a class="menu-button" (click)="onSinenavToggle()"><i-feather name="menu"></i-feather></a>
-    <a class="logo">therapyapp</a>
+<app-side-nav-content></app-side-nav-content>
+<main>
+  <div class="container-fluid container">
+    <nav>
+      <tui-primitive-textfield
+        iconAlign="left"
+        tuiTextfieldSize="m"
+        iconContent="tuiIconSearch"
+      >
+      Search
+      </tui-primitive-textfield>
+        <tui-avatar text="Maxim Hüsler" size="m"></tui-avatar>
+    </nav>
+    <tui-breadcrumbs size="s">
+      <ng-container *ngFor="let route of breadcrumbRoutes">
+        <a *tuiBreadcrumb tuiLink [routerLink]="route.routerLink">
+          {{ route.caption }}
+        </a>
+      </ng-container>
+    </tui-breadcrumbs>
+    <router-outlet></router-outlet>
   </div>
-  <div>
-    <tui-avatar
-      text="max muster"
-      [rounded]="true"
-    ></tui-avatar>
-  </div>
-</nav>
-<mat-drawer-container>
-  <mat-drawer #drawer mode="side" class="side-nav" opened>
-    <app-side-nav-content></app-side-nav-content>
-  </mat-drawer>
-  <mat-drawer-content [@onMainContentChange]="onSideNavChange ? 'open' : 'close'">
-    <div class="container-fluid container">
-        <router-outlet></router-outlet>
-    </div>
-  </mat-drawer-content>
-</mat-drawer-container>
+</main>

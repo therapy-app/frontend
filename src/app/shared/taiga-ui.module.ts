@@ -5,6 +5,7 @@ import {TuiInputModule} from '@taiga-ui/kit';
 import {TuiFieldErrorModule} from '@taiga-ui/kit';
 import {TuiInputPasswordModule} from '@taiga-ui/kit';
 import {TuiButtonModule} from '@taiga-ui/core';
+import {TuiPrimitiveTextfieldModule} from '@taiga-ui/core';
 
 @NgModule({
   declarations: [],
@@ -17,7 +18,8 @@ import {TuiButtonModule} from '@taiga-ui/core';
     ReactiveFormsModule,
     TuiFieldErrorModule,
     TuiInputPasswordModule,
-    TuiButtonModule
+    TuiButtonModule,
+    TuiPrimitiveTextfieldModule
   ],
 })
 export class TaigaUiModule {}

@@ -1,61 +1,60 @@
-nav.top-nav {
+nav {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   height: 64px;
-  background-color: #FFF;
-  div {
-    display: flex;
-    flex-direction: row;
-    gap: 15px;
-    margin: auto 0;
-    .menu-button {
-      cursor: pointer;
-      padding: 0 12px;
-    }
-
-    .logo {
-      font-weight: 600;
-      font-size: 15px;
-      width: 265px;
-    }
+  align-items: center;
+  tui-primitive-textfield {
+    width: 33%;
   }
-
+  tui-avatar {
+    cursor: pointer;
+  }
 }
 
-nav.side-nav {
+app-side-nav-content {
   display: flex;
   flex-direction: column;
-  background-color: #FFF;
-  width: 75px;
+  background-color: #fff;
   min-height: 100%;
+  width: 275px;
+  left: 0;
+  position: fixed;
+  transition: left 300ms ease 0s;
 }
 
-mat-drawer-container {
-  width: 100%;
-  height: calc(100% - 75px);
+main {
+  margin-left: 275px;
+  background-color: rgb(240, 241, 245);
+  min-height: 100%;
+  transition: margin-left 300ms ease 0s;
 }
-
 
 // max width adjusted to sidenav
 
-@media (max-width: 768px) {
-  .side-nav {
-    display: none;
+@media (max-width: 1200px) {
+  app-side-nav-content {
+    left: -275px;
+  }
+  main {
+    margin-left: 0;
   }
 }
-@media (min-width: 992px) {
-  .container {
-    max-width: calc(960px - 125px);
-  }
-}
+
 @media (min-width: 1200px) {
   .container {
-    max-width: calc(1140px - 125px);
+    max-width: calc(1140px - 250px);
   }
 }
+
 @media (min-width: 1400px) {
   .container {
-    max-width: calc(1320px - 125px);
+    max-width: calc(1320px - 250px);
+  }
+}
+
+@media (min-width: 1600px) {
+  .container {
+    max-width: calc(1520px - 250px);
   }
 }

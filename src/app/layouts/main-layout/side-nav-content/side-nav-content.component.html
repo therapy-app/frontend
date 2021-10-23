@@ -1,16 +1,31 @@
-<div
-  [@onSideNavChange]="sideNavState ? 'open' : 'close'"
->
+<div [@onSideNavChange]="sideNavState ? 'open' : 'close'">
+  <a class="logo">therapyapp<sup>alpha</sup></a>
   <div fxLayout="column" fxLayoutGap="10px" class="content">
-    <div>
-      <mat-nav-list>
-        <a mat-list-item *ngFor="let page of pages" [routerLink]="page.link">
-          <i-feather [class.active]="page.active" [name]="page?.icon"></i-feather>
-          <span [class.active]="page.active" class="title" [@animateText]="linkText ? 'show' : 'hide'"
-            >{{ page?.name }}
+    <tui-accordion [rounded]="false">
+      <tui-accordion-item
+        *ngFor="let page of pages"
+        [routerLink]="page.routerLink"
+        [showArrow]="page.multiMenu"
+        [disabled]="!page.multiMenu"
+      >
+        <div class="feature-route">
+          <i-feather
+            [class.active]="page.active"
+            [name]="page?.icon"
+          ></i-feather>
+          <span
+            class="title"
+            [class.active]="page.active"
+            [@animateText]="linkText ? 'show' : 'hide'"
+            >{{ page?.caption }}
           </span>
-        </a>
-      </mat-nav-list>
-    </div>
+        </div>
+        <ng-template tuiAccordionItemContent>
+          <div class="sub-pages" *ngFor="let childpage of page.childPages">
+            <a [routerLink]="page.routerLink">{{ childpage.caption }}</a>
+          </div>
+        </ng-template>
+      </tui-accordion-item>
+    </tui-accordion>
   </div>
 </div>
