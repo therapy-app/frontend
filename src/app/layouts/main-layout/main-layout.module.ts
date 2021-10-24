@@ -1,4 +1,4 @@
-import { TuiButtonModule, TuiLinkModule } from '@taiga-ui/core';
+import { TuiButtonModule, TuiLinkModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TaigaUiModule } from 'src/app/shared/taiga-ui.module';
@@ -8,10 +8,10 @@ import { TuiAccordionModule, TuiAvatarModule } from '@taiga-ui/kit';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import { SideNavContentComponent } from './side-nav-content/side-nav-content.component';
-import { SidenavService } from './sidenav.service';
 import { IconsModule } from 'src/app/shared/icons.module';
 import {TuiBreadcrumbsModule} from '@taiga-ui/kit';
-import {TuiLabelModule} from '@taiga-ui/core';
+import {TuiSidebarModule} from '@taiga-ui/addon-mobile';
+import {TuiActiveZoneModule} from '@taiga-ui/cdk';
 
 export const routes: Routes = [
   {
@@ -54,9 +54,11 @@ export const routes: Routes = [
     TuiAccordionModule,
     TuiBreadcrumbsModule,
     TuiLinkModule,
-    TuiLabelModule
+    TuiTextfieldControllerModule,
+    TuiSidebarModule,
+    TuiActiveZoneModule
   ],
-  providers: [SidenavService],
+  providers: [],
   exports: []
 })
 export class MainLayoutModule { }

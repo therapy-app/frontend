@@ -1,18 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { MatSidenav } from '@angular/material/sidenav';
-import { onMainContentChange } from '../../shared/animations';
-import { SidenavService } from './sidenav.service';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-main-layout',
   templateUrl: './main-layout.component.html',
   styleUrls: ['./main-layout.component.scss'],
-  animations: [ onMainContentChange ]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MainLayoutComponent implements OnInit{
 
   public onSideNavChange: boolean;
   public sideNavState = true;
+  open = false;
 
   breadcrumbRoutes = [
     {
@@ -24,15 +22,15 @@ export class MainLayoutComponent implements OnInit{
         routerLink: '/navigation/breadcrumbs',
         routerLinkActiveOptions: {exact: true},
     },
-];
+  ];
 
-  constructor(private sidenavService: SidenavService) {}
+  constructor() {}
 
   ngOnInit(): void {
   }
 
-  onSinenavToggle(): void {
-    this.sideNavState = !this.sideNavState;
-    this.onSideNavChange = this.sideNavState;
+  toggleSideNav(open: boolean): void {
+    this.open = open;
+    console.log(this.open)
   }
 }

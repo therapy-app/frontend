@@ -1,7 +1,5 @@
 import { AfterContentInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { onSideNavChange, animateText } from '../../../shared/animations';
-import { SidenavService } from '../sidenav.service';
 import { debounceTime } from 'rxjs/operators';
 import { merge } from 'rxjs';
 
@@ -9,7 +7,6 @@ import { merge } from 'rxjs';
   selector: 'app-side-nav-content',
   templateUrl: './side-nav-content.component.html',
   styleUrls: ['./side-nav-content.component.scss'],
-  animations: [onSideNavChange, animateText],
 })
 export class SideNavContentComponent implements OnInit {
   public sideNavState = true;
@@ -37,17 +34,10 @@ export class SideNavContentComponent implements OnInit {
   ];
 
   constructor(
-    private sidenavService: SidenavService,
     private router: Router,
     private route: ActivatedRoute
-  ) {
-    this.sidenavService.sideNavState$.subscribe((res) => {
-      this.sideNavState = res;
-      setTimeout(() => {
-        this.linkText = res;
-      }, 200);
-    });
-  }
+  ) {}
+
   ngOnInit(): void {
     merge(
       this.route.params,

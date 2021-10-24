@@ -1,15 +1,26 @@
-<app-side-nav-content></app-side-nav-content>
+<app-side-nav-content class="side-nav"></app-side-nav-content>
 <main>
   <div class="container-fluid container">
-    <nav>
+    <nav class="top-nav">
+      <div class="small-nav-content">
+        <a (click)="toggleSideNav(true)"
+            (tuiActiveZoneChange)="toggleSideNav($event)">
+          <i-feather name="menu"></i-feather>
+          <div *tuiSidebar="open; direction: 'left'">
+            <app-side-nav-content></app-side-nav-content>
+          </div>
+        </a>
+        <a class="logo">therapyapp<sup>alpha</sup></a>
+      </div>
       <tui-primitive-textfield
         iconAlign="left"
         tuiTextfieldSize="m"
         iconContent="tuiIconSearch"
+        [tuiTextfieldLabelOutside]="true"
       >
       Search
       </tui-primitive-textfield>
-        <tui-avatar text="Maxim Hüsler" size="m"></tui-avatar>
+      <tui-avatar text="Maxim Hüsler" size="m"></tui-avatar>
     </nav>
     <tui-breadcrumbs size="s">
       <ng-container *ngFor="let route of breadcrumbRoutes">

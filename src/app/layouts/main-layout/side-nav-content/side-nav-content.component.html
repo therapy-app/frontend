@@ -1,4 +1,4 @@
-<div [@onSideNavChange]="sideNavState ? 'open' : 'close'">
+<div>
   <a class="logo">therapyapp<sup>alpha</sup></a>
   <div fxLayout="column" fxLayoutGap="10px" class="content">
     <tui-accordion [rounded]="false">
@@ -16,7 +16,6 @@
           <span
             class="title"
             [class.active]="page.active"
-            [@animateText]="linkText ? 'show' : 'hide'"
             >{{ page?.caption }}
           </span>
         </div>
