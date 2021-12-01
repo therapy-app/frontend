@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-sign-up',
@@ -8,21 +8,67 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class SignUpComponent implements OnInit {
 
-  signUpForm = this.fb.group({
-    firstname: ['', [Validators.required]],
-    lastname: ['', [Validators.required]],
+  accountDetailsForm = this.fb.group({
+    fullname: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required]],
+  })
+
+  inviteCode = new FormControl('', Validators.required)
+  companyName = new FormControl('', Validators.required)
+
+  billingAddress = this.fb.group({
     address: ['', [Validators.required]],
     zipcode: ['', [Validators.required]],
-    location: ['', [Validators.required]],
-    password: ['', [Validators.required]]
-  });
+    location: ['', [Validators.required]]
+  })
+
+  readonly inviteCodeMask = {
+    guide: false,
+    mask: [
+        /\d/,
+        /\d/,
+        /\d/,
+        /\d/,
+        '-',
+        /\d/,
+        /\d/,
+        /\d/,
+        /\d/,
+      ]
+  }
+
+  stepIndex = 0
+  completedIndex = 0
+
+  signUpTypeIndex = -1
 
   constructor(
     public fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
+  }
+
+  setStepIndex(index: number): void {
+    if (index <= this.completedIndex) this.stepIndex = index
+  }
+
+  nextStep(): void {
+    if (this.completedIndex <= this.stepIndex) this.completedIndex += 1
+    this.setStepIndex(this.stepIndex + 1)
+  }
+
+  onSubmit(): void {
+    console.log(this.accountDetailsForm.value)
+  }
+
+  setSignUpType(index: number): void {
+    this.signUpTypeIndex = index
+  }
+
+  launch(): void {
+    console.log('init account')
   }
 
 }

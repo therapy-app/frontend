@@ -5,6 +5,10 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AuthenticationRoutingModule } from './authentication-routing.module';
 import { TranslationsModule } from 'src/app/shared/translations.module';
+import { TuiActionModule, TuiStepperModule } from '@taiga-ui/kit';
+import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
+import { TextMaskModule } from 'angular2-text-mask';
+import { TuiSvgModule } from '@taiga-ui/core';
 
 @NgModule({
   declarations: [SignInComponent, SignUpComponent],
@@ -12,7 +16,13 @@ import { TranslationsModule } from 'src/app/shared/translations.module';
     CommonModule,
     AuthenticationRoutingModule,
     TaigaUiModule,
-    TranslationsModule
-  ]
+    TranslationsModule,
+    TuiStepperModule,
+    MatPasswordStrengthModule,
+    TuiActionModule,
+    TextMaskModule,
+    TuiSvgModule
+  ],
+  providers: []
 })
 export class AuthenticationModule { }

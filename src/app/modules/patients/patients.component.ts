@@ -1,3 +1,4 @@
+import { BackendService } from './../../services/backend.service';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 @Component({
@@ -20,7 +21,9 @@ export class PatientsComponent implements OnInit {
 
   readonly columns = Object.keys(this.data[0]);
 
-  constructor() {}
+  constructor(private backend: BackendService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.backend.getPatients().subscribe()
+  }
 }

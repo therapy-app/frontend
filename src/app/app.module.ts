@@ -10,13 +10,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { TuiAvatarModule } from '@taiga-ui/kit';
+import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
+import { AddCsrfHeaderInterceptorService } from './core/interceptor/add-csrf-header-interceptor.service';
 
 @NgModule({
   declarations: [AppComponent, AuthLayoutComponent],
@@ -35,8 +37,16 @@ import { TuiAvatarModule } from '@taiga-ui/kit';
         deps: [HttpClient],
       },
     }),
+    MatPasswordStrengthModule,
   ],
-  providers: [{ provide: TUI_SANITIZER, useClass: NgDompurifySanitizer }],
+  providers: [
+    { provide: TUI_SANITIZER, useClass: NgDompurifySanitizer },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AddCsrfHeaderInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

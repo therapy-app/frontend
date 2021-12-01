@@ -10,8 +10,7 @@
     "FORGOT_PASSWORD": "Forgot password?"
   },
   "ACCOUNT": {
-    "FIRSTNAME": "First name",
-    "LASTNAME": "Last name",
+    "FULL_NAME": "Full name",
     "EMAIL": "E-Mail",
     "ADDRESS": "Address",
     "ZIPCODE": "Zipcode",

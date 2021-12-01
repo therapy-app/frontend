@@ -8,3 +8,62 @@ button {
     text-align: right;
   }
 }
+
+tui-stepper{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+  a {
+    margin: 0 1rem !important;
+    ::ng-deep .marker {
+      margin-right: 0;
+    }
+  }
+}
+
+h1 {
+  line-height: 30px;
+}
+
+.type-selection {
+  width: 750px;
+  margin-left: -125px;
+  &.row {
+    gap: 15px;
+  }
+
+  tui-action {
+    height: 350px;
+    &:hover {
+      border: solid 3px rgb(78, 96, 255, 0.4);
+    }
+    &.selected {
+      border: solid 3px rgb(78, 96, 255, 0.7);
+    }
+  }
+}
+
+@media only screen and (max-width : 768px) {
+  .type-selection {
+    max-width: 100%;
+    margin-left: 0px;
+  }
+}
+
+.finished-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .finished-icon {
+    width: 50px;
+    height: 50px;
+    background-color: #526ed3;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    tui-svg {
+      color: white;
+    }
+  }
+}
