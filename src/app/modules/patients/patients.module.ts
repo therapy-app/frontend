@@ -7,7 +7,7 @@ import { TaigaUiModule } from 'src/app/shared/taiga-ui.module';
 
 export const routes: Routes = [
   { path: '', component: PatientsComponent },
-];
+]
 
 
 @NgModule({

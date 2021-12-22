@@ -17,9 +17,9 @@ export class PatientsComponent implements OnInit {
       name: 'Roman Sedov',
       balance: 423242,
     },
-  ] as const;
+  ] as const
 
-  readonly columns = Object.keys(this.data[0]);
+  readonly columns = Object.keys(this.data[0])
 
   constructor(private backend: BackendService) {}
 

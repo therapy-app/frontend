@@ -20,7 +20,12 @@
       >
       Search
       </tui-primitive-textfield>
-      <tui-avatar text="Maxim Hüsler" size="m"></tui-avatar>
+      <tui-hosted-dropdown [content]="content">
+        <tui-avatar text="Maxim Hüsler" size="m"></tui-avatar>
+      </tui-hosted-dropdown>
+      <ng-template #content>
+        <a (click)="onSignOut()">{{ 'SIGN_OUT' | translate }}</a>
+      </ng-template>
     </nav>
     <tui-breadcrumbs size="s">
       <ng-container *ngFor="let route of breadcrumbRoutes">

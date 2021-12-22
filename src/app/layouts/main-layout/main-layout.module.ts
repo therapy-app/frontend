@@ -1,8 +1,7 @@
-import { TuiButtonModule, TuiLinkModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
+import { TuiLinkModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TaigaUiModule } from 'src/app/shared/taiga-ui.module';
-import { RouterModule, Routes } from '@angular/router';
 import { MainLayoutComponent } from './main-layout.component';
 import { TuiAccordionModule, TuiAvatarModule } from '@taiga-ui/kit';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -12,41 +11,16 @@ import { IconsModule } from 'src/app/shared/icons.module';
 import {TuiBreadcrumbsModule} from '@taiga-ui/kit';
 import {TuiSidebarModule} from '@taiga-ui/addon-mobile';
 import {TuiActiveZoneModule} from '@taiga-ui/cdk';
-
-export const routes: Routes = [
-  {
-    path: '',
-    component: MainLayoutComponent,
-    children: [
-      {
-        path: '',
-        redirectTo: 'dashboard',
-        pathMatch: 'full'
-      },
-      {
-        path: 'dashboard',
-        loadChildren: () =>
-          import('../../modules/dashboard/dashboard.module').then(
-            (m) => m.DashboardModule
-          ),
-      },
-      {
-        path: 'patients',
-        loadChildren: () =>
-          import('../../modules/patients/patients.module').then(
-            (m) => m.PatientsModule
-          ),
-      },
-    ],
-  },
-];
+import { MainLayoutRoutingModule } from './mail-layout.routing.module';
+import {TuiHostedDropdownModule} from '@taiga-ui/core';
+import { TranslationsModule } from 'src/app/shared/translations.module';
 
 @NgModule({
   declarations: [MainLayoutComponent, SideNavContentComponent],
   imports: [
     CommonModule,
     TaigaUiModule,
-    RouterModule.forChild(routes),
+    MainLayoutRoutingModule,
     TuiAvatarModule,
     MatSidenavModule,
     MatListModule,
@@ -56,7 +30,9 @@ export const routes: Routes = [
     TuiLinkModule,
     TuiTextfieldControllerModule,
     TuiSidebarModule,
-    TuiActiveZoneModule
+    TuiActiveZoneModule,
+    TuiHostedDropdownModule,
+    TranslationsModule
   ],
   providers: [],
   exports: []

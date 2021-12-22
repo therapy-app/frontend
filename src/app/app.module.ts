@@ -1,3 +1,4 @@
+import { AuthGuard } from './core/guards/auth.guard';
 import { NgDompurifySanitizer } from '@tinkoff/ng-dompurify';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
@@ -10,13 +11,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpClientXsrfModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
-import { TuiAvatarModule } from '@taiga-ui/kit';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 import { AddCsrfHeaderInterceptorService } from './core/interceptor/add-csrf-header-interceptor.service';
 
@@ -46,11 +45,12 @@ import { AddCsrfHeaderInterceptorService } from './core/interceptor/add-csrf-hea
       useClass: AddCsrfHeaderInterceptorService,
       multi: true,
     },
+    AuthGuard
   ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
-  return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http)
 }

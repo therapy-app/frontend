@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
+import { AuthenticationService } from 'src/app/modules/authentication/authentication.service'
 
 @Component({
   selector: 'app-main-layout',
@@ -8,9 +9,9 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 })
 export class MainLayoutComponent implements OnInit{
 
-  public onSideNavChange: boolean;
-  public sideNavState = true;
-  open = false;
+  public onSideNavChange: boolean
+  public sideNavState = true
+  open = false
 
   breadcrumbRoutes = [
     {
@@ -22,15 +23,18 @@ export class MainLayoutComponent implements OnInit{
         routerLink: '/navigation/breadcrumbs',
         routerLinkActiveOptions: {exact: true},
     },
-  ];
+  ]
 
-  constructor() {}
+  constructor(private authService: AuthenticationService) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   toggleSideNav(open: boolean): void {
-    this.open = open;
+    this.open = open
     console.log(this.open)
+  }
+
+  onSignOut(): void {
+    this.authService.signOut()
   }
 }

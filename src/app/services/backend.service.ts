@@ -8,7 +8,7 @@ import { Patient } from '../shared/models/patients'
 })
 export class BackendService {
 
-  baseUrl = 'https://localhost:59756/api/v1'
+  baseUrl = 'https://api.therapyapp.local/api/v1'
 
   constructor(private http: HttpClient) { }
 

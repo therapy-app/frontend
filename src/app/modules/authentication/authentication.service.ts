@@ -8,18 +8,27 @@ import { switchMap } from 'rxjs/operators'
 })
 export class AuthenticationService {
 
-  baseUrl = 'https://localhost:59756/api/v1'
+  baseUrl = 'https://api.therapyapp.local/api/v1'
 
   constructor(private httpClient: HttpClient) { }
 
-  signIn(model: {email: string, password: string}): Observable<any> {
+  signIn(model: {email: string, password: string}): Observable<{}> {
     return this.httpClient.post(`${this.baseUrl}/auth/signin`, model, { withCredentials: true })
       .pipe(
         switchMap(_ => this.httpClient.get(`${this.baseUrl}/antiforgery`, { withCredentials: true }))
       )
   }
 
-  getSignUpStep(): void {
+  signOut(): void {
 
+  }
+
+  getSignUpStep(): Observable<{}> {
+    return this.httpClient.post(`${this.baseUrl}/auth/signin`, { withCredentials: true })
+  }
+
+  // true -> authenticated
+  getAuthStatus(): boolean {
+    return true
   }
 }
