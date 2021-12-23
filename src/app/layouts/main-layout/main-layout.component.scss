@@ -28,6 +28,17 @@
   }
 }
 
+.menu-item {
+  cursor: pointer;
+  width: 120px;
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  .icon {
+    width: 35px;
+  }
+}
+
 .side-nav {
   display: flex;
   flex-direction: column;

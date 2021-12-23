@@ -17,6 +17,7 @@ export class AuthenticationService {
 
   signIn(model: {email: string, password: string}): Observable<{}> {
     return this.httpClient.post(`${this.baseUrl}/auth/signin`, model, { withCredentials: true })
+      .pipe(tap(() => this.getAntiforgery()))
   }
 
   signUp(model: {fullName: string, email: string, password: string}): Observable<{}> {
@@ -25,7 +26,10 @@ export class AuthenticationService {
 
   signOut(): Observable<{}> {
     return this.httpClient.post(`${this.baseUrl}/auth/signout`, {}, { withCredentials: true })
-      .pipe(tap(() => this.currentUser.next(null)))
+      .pipe(tap(() => {
+        this.currentUser.next({ fullName: '' })
+        localStorage.setItem('userId', '')
+      }))
   }
 
   getSignUpStep(): Observable<{}> {
@@ -34,7 +38,7 @@ export class AuthenticationService {
 
 
   getAuthStatus(): boolean {
-    return this.currentUser ? true : false
+    return localStorage.getItem('userId') ? true : false
   }
 
   getAntiforgery(): Observable<{}> {

@@ -1,4 +1,4 @@
-import { TuiLinkModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
+import { TuiLinkModule, TuiSvgModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TaigaUiModule } from 'src/app/shared/taiga-ui.module';
@@ -32,7 +32,8 @@ import { TranslationsModule } from 'src/app/shared/translations.module';
     TuiSidebarModule,
     TuiActiveZoneModule,
     TuiHostedDropdownModule,
-    TranslationsModule
+    TranslationsModule,
+    TuiSvgModule
   ],
   providers: [],
   exports: []

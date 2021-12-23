@@ -9,8 +9,8 @@ import { merge } from 'rxjs';
   styleUrls: ['./side-nav-content.component.scss'],
 })
 export class SideNavContentComponent implements OnInit {
-  public sideNavState = true;
-  public linkText = true;
+  public sideNavState = true
+  public linkText = true
 
   public pages: any[] = [
     {
@@ -45,7 +45,7 @@ export class SideNavContentComponent implements OnInit {
     ).subscribe(() => {
       this.pages.forEach((page) => {
         page.active = false;
-        if (this.router.url.indexOf(page.routerLink) > -1) page.active = true;
+        if (this.router.url.indexOf(page.routerLink) > -1) page.active = true
       });
     });
   }

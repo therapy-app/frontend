@@ -24,7 +24,12 @@
         <tui-avatar [text]="(authService.currentUser$ | async).fullName" size="m"></tui-avatar>
       </tui-hosted-dropdown>
       <ng-template #content>
-        <a (click)="onSignOut()">{{ 'SIGN_OUT' | translate }}</a>
+          <a class="menu-item" (click)="onSignOut()">
+            <div class="icon">
+              <tui-svg src="tuiIconLogoutLarge"></tui-svg>
+            </div>
+            <div>{{ 'SIGN_OUT' | translate }}</div>
+          </a>
       </ng-template>
     </nav>
     <tui-breadcrumbs size="s">
