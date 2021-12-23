@@ -18,10 +18,10 @@
         iconContent="tuiIconSearch"
         [tuiTextfieldLabelOutside]="true"
       >
-      Search
+      {{ 'SEARCH' | translate }}
       </tui-primitive-textfield>
       <tui-hosted-dropdown [content]="content">
-        <tui-avatar text="Maxim Hüsler" size="m"></tui-avatar>
+        <tui-avatar [text]="(authService.currentUser$ | async).fullName" size="m"></tui-avatar>
       </tui-hosted-dropdown>
       <ng-template #content>
         <a (click)="onSignOut()">{{ 'SIGN_OUT' | translate }}</a>

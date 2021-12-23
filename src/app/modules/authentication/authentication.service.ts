@@ -1,34 +1,43 @@
+import { User } from './../../shared/models/user'
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { Observable } from 'rxjs'
-import { switchMap } from 'rxjs/operators'
+import { BehaviorSubject, Observable, of } from 'rxjs'
+import { tap } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
+  currentUser = new BehaviorSubject<User>({ fullName: '' })
+  currentUser$ = this.currentUser.asObservable()
   baseUrl = 'https://api.therapyapp.local/api/v1'
 
   constructor(private httpClient: HttpClient) { }
 
   signIn(model: {email: string, password: string}): Observable<{}> {
     return this.httpClient.post(`${this.baseUrl}/auth/signin`, model, { withCredentials: true })
-      .pipe(
-        switchMap(_ => this.httpClient.get(`${this.baseUrl}/antiforgery`, { withCredentials: true }))
-      )
   }
 
-  signOut(): void {
+  signUp(model: {fullName: string, email: string, password: string}): Observable<{}> {
+    return this.httpClient.post(`${this.baseUrl}/auth/signup`, model, { withCredentials: true })
+  }
 
+  signOut(): Observable<{}> {
+    return this.httpClient.post(`${this.baseUrl}/auth/signout`, {}, { withCredentials: true })
+      .pipe(tap(() => this.currentUser.next(null)))
   }
 
   getSignUpStep(): Observable<{}> {
     return this.httpClient.post(`${this.baseUrl}/auth/signin`, { withCredentials: true })
   }
 
-  // true -> authenticated
+
   getAuthStatus(): boolean {
-    return true
+    return this.currentUser ? true : false
+  }
+
+  getAntiforgery(): Observable<{}> {
+    return this.httpClient.get(`${this.baseUrl}/antiforgery`, { withCredentials: true })
   }
 }

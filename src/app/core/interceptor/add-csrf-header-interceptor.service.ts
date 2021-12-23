@@ -6,7 +6,6 @@ import { Observable } from 'rxjs'
 export class AddCsrfHeaderInterceptorService implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const requestToken = this.getCookieValue('XSRF-TOKEN')
-        console.log(requestToken)
         return next.handle(req.clone({
             headers: req.headers.set('X-XSRF-TOKEN', requestToken.trim())
         }))

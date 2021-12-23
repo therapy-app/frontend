@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -44,11 +45,11 @@ export class SignUpComponent implements OnInit {
   signUpTypeIndex = -1
 
   constructor(
-    public fb: FormBuilder
+    public fb: FormBuilder,
+    private authService: AuthenticationService
   ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   setStepIndex(index: number): void {
     if (index <= this.completedIndex) this.stepIndex = index
@@ -70,5 +71,11 @@ export class SignUpComponent implements OnInit {
   launch(): void {
     console.log('init account')
   }
+
+  onSignUp(): void {
+    this.authService.signUp(this.accountDetailsForm.value).subscribe(() => this.nextStep())
+  }
+
+  onStrengthChanged(e: any): void {}
 
 }

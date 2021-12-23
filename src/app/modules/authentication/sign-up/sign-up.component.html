@@ -43,7 +43,7 @@
     >
     </mat-password-strength-info>
   </div>
-  <button class="tui-form__row" tuiButton [disabled]="accountDetailsForm.invalid || passwordComponent.strength !== 100" (click)="nextStep()" type="submit" appearance="primary">
+  <button class="tui-form__row" tuiButton [disabled]="accountDetailsForm.invalid || passwordComponent.strength !== 100" (click)="onSignUp()" type="submit" appearance="primary">
     Create Account
   </button>
   <div class="redirects row justify-content-between">

@@ -27,8 +27,11 @@ export class SignInComponent implements OnInit {
 
   onSubmit(): void {
     this.authService.signIn(this.signInForm.value)
-      .subscribe((userInfo) => {
-        this.router.navigate(['/'])
-      })
+      .subscribe((userInfo: { userId: string }) =>
+        this.authService.getAntiforgery()
+        .subscribe(() => {
+          localStorage.setItem('userId', userInfo.userId)
+          this.router.navigate(['/'])
+        }))
   }
 }

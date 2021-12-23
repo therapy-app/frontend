@@ -4,3 +4,13 @@ table {
 
 .filters {
 }
+
+
+.remove {
+  opacity: 0;
+
+  tr:hover &,
+  tr:focus-within & {
+      opacity: 1;
+  }
+}

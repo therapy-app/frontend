@@ -19,7 +19,7 @@ export class PatientsComponent implements OnInit {
     },
   ] as const
 
-  readonly columns = Object.keys(this.data[0])
+  readonly columns = ['name', 'phonenumber', 'email', 'nextAppointment', 'actions']
 
   constructor(private backend: BackendService) {}
 

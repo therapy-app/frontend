@@ -1,4 +1,7 @@
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../authentication/authentication.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
+  $userName = new Observable<string>()
+
   readonly value = [
     [50, 50],
     [100, 75],
@@ -14,9 +19,11 @@ export class DashboardComponent implements OnInit {
     [250, 155],
     [300, 190],
     [350, 90],
-  ];
+  ]
 
-  constructor() {}
+  constructor(private authService: AuthenticationService) {
+    this.$userName = authService.currentUser$.pipe(map(user => user.fullName))
+  }
 
   ngOnInit(): void {}
 }

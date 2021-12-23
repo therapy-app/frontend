@@ -1,5 +1,7 @@
+import { Router } from '@angular/router';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { AuthenticationService } from 'src/app/modules/authentication/authentication.service'
+import { BackendService } from 'src/app/services/backend.service';
 
 @Component({
   selector: 'app-main-layout',
@@ -25,16 +27,22 @@ export class MainLayoutComponent implements OnInit{
     },
   ]
 
-  constructor(private authService: AuthenticationService) {}
+  constructor(public authService: AuthenticationService, private backend: BackendService, private router: Router) {
+    this.authService.getAntiforgery()
+      .subscribe(() => {
+        this.backend.getUser(localStorage.getItem('userId'))
+          .subscribe(user => this.authService.currentUser.next(user))
+      })
+  }
 
   ngOnInit(): void {}
 
   toggleSideNav(open: boolean): void {
     this.open = open
-    console.log(this.open)
   }
 
   onSignOut(): void {
     this.authService.signOut()
+      .subscribe(() => this.router.navigate(['/auth/signin']))
   }
 }

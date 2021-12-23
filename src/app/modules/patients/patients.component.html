@@ -6,7 +6,7 @@
     iconContent="tuiIconSearch"
     class="col-md-6"
   >
-    Search
+    {{ 'SEARCH' | translate }}
   </tui-primitive-textfield>
   <div class="justify-content-end">
 
@@ -16,14 +16,30 @@
   <table tuiTable [columns]="columns">
     <thead>
       <tr tuiThGroup>
-        <th tuiTh [resizable]="true">Name</th>
-        <th tuiTh>Balance</th>
+        <th *tuiHead="'name'" tuiTh [resizable]="true">Name</th>
+        <th *tuiHead="'phonenumber'" tuiTh [resizable]="true">Phone number</th>
+        <th *tuiHead="'email'" tuiTh [resizable]="true">E-Mail</th>
+        <th *tuiHead="'nextAppointment'" tuiTh [resizable]="true">Next Appointment</th>
+        <th *tuiHead="'actions'" [sorter]="null" tuiTh></th>
       </tr>
     </thead>
     <tbody tuiTbody [data]="data">
       <tr *tuiRow="let item of data" tuiTr>
-        <td *tuiCell="'balance'" tuiTd>
-          {{ item.balance }}
+        <td *tuiCell="'name'" tuiTd>{{ item.name }}</td>
+        <td *tuiCell="'phonenumber'" tuiTd>{{ item.name }}</td>
+        <td *tuiCell="'email'" tuiTd>{{ item.name }}</td>
+        <td *tuiCell="'nextAppointment'" tuiTd>{{ item.name }}</td>
+        <td *tuiCell="'actions'" tuiTd>
+          <button
+            tuiIconButton
+            appearance="flat"
+            size="s"
+            icon="tuiIconTrash"
+            title="Remove"
+            shape="rounded"
+            class="remove"
+            (click)="remove(item)">
+          </button>
         </td>
       </tr>
     </tbody>
