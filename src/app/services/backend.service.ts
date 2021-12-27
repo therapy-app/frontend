@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 import { Patient } from '../shared/models/patients'
 import { User } from '../shared/models/user'
+import { environment } from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
 })
 export class BackendService {
 
-  baseUrl = 'https://api.therapyapp.local/api/v1'
+  baseUrl = environment.apiBaseUrl
 
   constructor(private http: HttpClient) { }
 

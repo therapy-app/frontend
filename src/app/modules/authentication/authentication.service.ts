@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { BehaviorSubject, Observable, of } from 'rxjs'
 import { tap } from 'rxjs/operators'
+import { environment } from '../../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class AuthenticationService {
 
   currentUser = new BehaviorSubject<User>({ fullName: '' })
   currentUser$ = this.currentUser.asObservable()
-  baseUrl = 'https://api.therapyapp.local/api/v1'
+  baseUrl = environment.apiBaseUrl
 
   constructor(private httpClient: HttpClient) { }
 

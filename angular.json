@@ -75,7 +75,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "frontend:build",
-            "host": "therapyapp.local"
+            "host": "my.therapyapp.local"
           },
           "configurations": {
             "production": {
