@@ -1,10 +1,4 @@
-<tui-stepper [activeItemIndex]="stepIndex">
-  <a tuiStep (click)="setStepIndex(0)" icon="tuiIconUser"></a>
-  <a tuiStep (click)="setStepIndex(1)" icon="tuiIconStarFilled"></a>
-  <a tuiStep (click)="setStepIndex(2)" icon="tuiIconSettings"></a>
-  <a tuiStep (click)="setStepIndex(3)" icon="tuiIconDone"></a>
-</tui-stepper>
-<form [formGroup]="accountDetailsForm" (ngSubmit)="onSubmit()" *ngIf="stepIndex === 0">
+<form [formGroup]="accountDetailsForm" (ngSubmit)="onSubmit()">
   <h1>Welcome! Lets setup your account.</h1>
   <div class="tui-form__row">
     <tui-input formControlName="fullname">
@@ -21,19 +15,15 @@
     <tui-field-error></tui-field-error>
   </div>
   <div class="tui-form__row">
-    <div>
-      <tui-input-password formControlName="password" [color]="passwordComponent.color" #password [type]="inputType">
+    <div class="password">
+      <tui-input-password formControlName="password" #password>
         {{ "ACCOUNT.PASSWORD" | translate }}
         <span class="tui-required"></span>
       </tui-input-password>
       <tui-field-error></tui-field-error>
-      <mat-hint align="end" aria-live="polite">
-        {{password.value.length}} / 8
-      </mat-hint>
     </div>
     <mat-password-strength
       #passwordComponent
-      (onStrengthChanged)="onStrengthChanged($event)"
       [password]="password.value"
     >
     </mat-password-strength>
@@ -43,90 +33,10 @@
     >
     </mat-password-strength-info>
   </div>
-  <button class="tui-form__row" tuiButton [disabled]="accountDetailsForm.invalid || passwordComponent.strength !== 100" (click)="onSignUp()" type="submit" appearance="primary">
+  <button class="tui-form__row" tuiButton [disabled]="accountDetailsForm.invalid || passwordComponent.strength !== 100" type="submit" appearance="primary">
     Create Account
   </button>
   <div class="redirects row justify-content-between">
     <a routerLink="/auth/signin" class="col-6">{{ 'AUTH.ACCOUNT_EXISTING' | translate }}</a>
   </div>
 </form>
-<form *ngIf="stepIndex === 1">
-  <h1>How are you planning to use therapyapp?</h1>
-  <div class="type-selection row">
-    <tui-action class="col-md" icon="tuiIconUsers" (click)="setSignUpType(0)" [class.selected]="signUpTypeIndex === 0">
-      <h3>Join my team</h3>
-      <p></p>
-    </tui-action>
-    <tui-action class="col-md" icon="tuiIconUsers" (click)="setSignUpType(1)" [class.selected]="signUpTypeIndex === 1">
-      <h3>New team</h3>
-      <p></p>
-    </tui-action>
-    <tui-action class="col-md" icon="tuiIconUser" (click)="setSignUpType(2)" [class.selected]="signUpTypeIndex === 2">
-      <h3>For myself</h3>
-      <p></p>
-    </tui-action>
-  </div>
-  <button class="tui-form__row" tuiButton [disabled]="signUpTypeIndex === -1" (click)="nextStep()" type="submit" appearance="primary">
-    Continue
-  </button>
-</form>
-<div *ngIf="stepIndex === 2">
-  <div *ngIf="signUpTypeIndex === 0">
-    <h1>Insert invite code</h1>
-    <div class="tui-form__row">
-      <tui-input [formControl]="inviteCode" [textMask]="inviteCodeMask" minlength="9">
-        Enter Invite-Code<span class="tui-required"></span>
-      </tui-input>
-      <tui-field-error></tui-field-error>
-    </div>
-    <button class="tui-form__row" tuiButton [disabled]="inviteCode.invalid" (click)="nextStep()" type="submit" appearance="primary">
-      Verify Code
-    </button>
-  </div>
-  <form  [formGroup]="billingAddress" *ngIf="signUpTypeIndex !== 0">
-    <h1>Lets setup your practice.</h1>
-    <div *ngIf="signUpTypeIndex === 1" class="tui-form__row">
-      <tui-input [formControl]="companyName">
-        Business name
-        <span class="tui-required"></span>
-      </tui-input>
-      <tui-field-error></tui-field-error>
-    </div>
-    <div class="tui-form__row">
-      <tui-input formControlName="address">
-        {{ "ACCOUNT.ADDRESS" | translate }}
-        <span class="tui-required"></span>
-      </tui-input>
-      <tui-field-error></tui-field-error>
-    </div>
-    <div class="tui-form__row tui-form__row_multi-fields">
-      <div class="tui-form__multi-field">
-        <tui-input formControlName="zipcode">
-          {{ "ACCOUNT.ZIPCODE" | translate }}
-          <span class="tui-required"></span>
-        </tui-input>
-        <tui-field-error></tui-field-error>
-      </div>
-      <div class="tui-form__multi-field">
-        <tui-input formControlName="location">
-          {{ "ACCOUNT.LOCATION" | translate }}
-          <span class="tui-required"></span>
-        </tui-input>
-        <tui-field-error></tui-field-error>
-      </div>
-    </div>
-    <button class="tui-form__row" tuiButton [disabled]="(billingAddress.invalid) || (signUpTypeIndex === 1 && companyName.invalid)" (click)="nextStep()" type="submit" appearance="primary">
-      Submit Address
-    </button>
-  </form>
-</div>
-<div class="finished-wrapper" *ngIf="stepIndex === 3">
-  <div class="finished-icon">
-    <tui-svg src="tuiIconDone"></tui-svg>
-  </div>
-  <h1>Congratulations, {{ accountDetailsForm.controls.fullname.value }}</h1>
-  <span>You have successfully set up your account.</span>
-  <button class="tui-form__row" tuiButton (click)="launch()" type="submit" appearance="primary" routerLink="/">
-    Launch therapyapp
-  </button>
-</div>

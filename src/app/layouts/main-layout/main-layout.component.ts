@@ -27,12 +27,8 @@ export class MainLayoutComponent implements OnInit{
     },
   ]
 
-  constructor(public authService: AuthenticationService, private backend: BackendService, private router: Router) {
-    this.authService.getAntiforgery()
-      .subscribe(() => {
-        this.backend.getUser(localStorage.getItem('userId'))
-          .subscribe(user => this.authService.currentUser.next(user))
-      })
+  constructor(public authService: AuthenticationService, private router: Router) {
+    this.authService.refreshUser()
   }
 
   ngOnInit(): void {}

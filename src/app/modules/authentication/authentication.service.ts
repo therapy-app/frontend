@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core'
 import { BehaviorSubject, Observable, of } from 'rxjs'
 import { tap } from 'rxjs/operators'
 import { environment } from '../../../environments/environment'
+import { BackendService } from 'src/app/services/backend.service'
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,10 @@ export class AuthenticationService {
   currentUser$ = this.currentUser.asObservable()
   baseUrl = environment.apiBaseUrl
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(
+    private httpClient: HttpClient,
+    private backend: BackendService
+  ) { }
 
   signIn(model: {email: string, password: string}): Observable<{}> {
     return this.httpClient.post(`${this.baseUrl}/auth/signin`, model, { withCredentials: true })
@@ -44,5 +48,13 @@ export class AuthenticationService {
 
   getAntiforgery(): Observable<{}> {
     return this.httpClient.get(`${this.baseUrl}/antiforgery`, { withCredentials: true })
+  }
+
+  refreshUser(): void {
+    this.getAntiforgery()
+      .subscribe(() => {
+        this.backend.getUser(localStorage.getItem('userId'))
+          .subscribe(user => this.currentUser.next(user))
+      })
   }
 }

@@ -17,11 +17,7 @@ import { TuiSvgModule } from '@taiga-ui/core';
     AuthenticationRoutingModule,
     TaigaUiModule,
     TranslationsModule,
-    TuiStepperModule,
-    MatPasswordStrengthModule,
-    TuiActionModule,
-    TextMaskModule,
-    TuiSvgModule
+    MatPasswordStrengthModule
   ],
   providers: []
 })

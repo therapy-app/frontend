@@ -1,0 +1,56 @@
+<tui-stepper>
+  <button tuiStep routerLink="/onboarding/usage" icon="tuiIconStarFilled">Usage</button>
+  <button *ngIf="!isNewPractice" tuiStep routerLink="/onboarding/invite" icon="tuiIconSettings">Invite</button>
+  <button *ngIf="isNewPractice" tuiStep routerLink="/onboarding/practice" icon="tuiIconSettings">Practice</button>
+  <button tuiStep routerLink="/onboarding/success" icon="tuiIconDone">Success</button>
+</tui-stepper>
+<div *ngIf="router.url === '/onboarding/usage'">
+  <div class="title">
+    <h1>Nice to meet you {{ ($userName | async) }}. ✌️</h1>
+    <h3>How are you planning to use therapyapp?</h3>
+  </div>
+  <div class="usage-selection row">
+    <tui-action class="col-md" icon="tuiIconUsers" routerLink="/onboarding/invite" (click)="setSetupType(false)">
+      <h3>Join my therapy practice</h3>
+      <p></p>
+    </tui-action>
+    <tui-action class="col-md" icon="tuiIconUsers" routerLink="/onboarding/practice" (click)="setSetupType(true)">
+      <h3>Create therapy practice</h3>
+      <p></p>
+    </tui-action>
+  </div>
+</div>
+<form *ngIf="router.url === '/onboarding/invite'">
+  <h1>Insert invite code</h1>
+  <div class="tui-form__row">
+    <tui-input [formControl]="inviteCode" [textMask]="inviteCodeMask" minlength="9">
+      Enter Invite-Code<span class="tui-required"></span>
+    </tui-input>
+    <tui-field-error></tui-field-error>
+  </div>
+  <button class="tui-form__row" tuiButton type="submit" appearance="primary">
+    Verify Code
+  </button>
+</form>
+<form *ngIf="router.url === '/onboarding/practice'">
+  <h1>Insert invite code</h1>
+  <div class="tui-form__row">
+    <tui-input [formControl]="inviteCode" [textMask]="inviteCodeMask" minlength="9">
+      Enter Invite-Code<span class="tui-required"></span>
+    </tui-input>
+    <tui-field-error></tui-field-error>
+  </div>
+  <button class="tui-form__row" [disabled]="inviteCode.invalid" (click)="verifyInvite()" tuiButton type="button" appearance="primary">
+    Verify Code
+  </button>
+</form>
+<div class="success-wrapper" *ngIf="router.url === '/onboarding/success'">
+  <div class="success-icon">
+    <tui-svg src="tuiIconDone"></tui-svg>
+  </div>
+  <h1>Congratulations, {{ accountDetailsForm.controls.fullname.value }}</h1>
+  <span>You have successfully set up your account.</span>
+  <button class="tui-form__row" tuiButton (click)="onSuccess()" type="submit" appearance="primary" routerLink="/">
+    Launch therapyapp
+  </button>
+</div>

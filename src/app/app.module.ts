@@ -8,7 +8,7 @@ import {
   TUI_SANITIZER,
 } from '@taiga-ui/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule, HttpClientXsrfModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -18,6 +18,7 @@ import { AppComponent } from './app.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 import { AddCsrfHeaderInterceptorService } from './core/interceptor/add-csrf-header-interceptor.service';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [AppComponent, AuthLayoutComponent],
@@ -36,7 +37,7 @@ import { AddCsrfHeaderInterceptorService } from './core/interceptor/add-csrf-hea
         deps: [HttpClient],
       },
     }),
-    MatPasswordStrengthModule,
+    NgxSpinnerModule
   ],
   providers: [
     { provide: TUI_SANITIZER, useClass: NgDompurifySanitizer },
@@ -48,6 +49,7 @@ import { AddCsrfHeaderInterceptorService } from './core/interceptor/add-csrf-hea
     AuthGuard
   ],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}
 
