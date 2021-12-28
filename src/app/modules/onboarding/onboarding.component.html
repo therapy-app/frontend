@@ -21,7 +21,7 @@
   </div>
 </div>
 <form *ngIf="router.url === '/onboarding/invite'">
-  <h1>Insert invite code</h1>
+  <h1>Join your therapy practice</h1>
   <div class="tui-form__row">
     <tui-input [formControl]="inviteCode" [textMask]="inviteCodeMask" minlength="9">
       Enter Invite-Code<span class="tui-required"></span>
@@ -33,7 +33,7 @@
   </button>
 </form>
 <form *ngIf="router.url === '/onboarding/practice'">
-  <h1>Insert invite code</h1>
+  <h1>Create therapy practice</h1>
   <div class="tui-form__row">
     <tui-input [formControl]="inviteCode" [textMask]="inviteCodeMask" minlength="9">
       Enter Invite-Code<span class="tui-required"></span>
@@ -48,9 +48,9 @@
   <div class="success-icon">
     <tui-svg src="tuiIconDone"></tui-svg>
   </div>
-  <h1>Congratulations, {{ accountDetailsForm.controls.fullname.value }}</h1>
-  <span>You have successfully set up your account.</span>
-  <button class="tui-form__row" tuiButton (click)="onSuccess()" type="submit" appearance="primary" routerLink="/">
+  <h1>Congratulations, {{ ($userName | async) }}</h1>
+  <h3>You have successfully set up your account.</h3>
+  <button class="tui-form__row" tuiButton (click)="onSuccess()" type="submit" appearance="primary">
     Launch therapyapp
   </button>
 </div>

@@ -1,3 +1,4 @@
+import { LoadingService } from './../../services/loading.service';
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
@@ -15,6 +16,9 @@ export class OnboardingComponent implements OnInit {
   inviteCode = this.fb.control('', Validators.required)
   companyName = this.fb.control('', Validators.required)
   $userName = new Observable<string>()
+
+  loadingTextQueueInvite = ['Joining therapy practice...', 'Assigning storage...', 'Verifying Authentication...', 'Setting up your profile...']
+  loadingTextQueueNewPractice = ['Creating therapy practice...', 'Assigning storage...', 'Verifying Authentication...', 'Setting up your profile...']
 
   isNewPractice = false
 
@@ -37,7 +41,8 @@ export class OnboardingComponent implements OnInit {
     private fb: FormBuilder,
     public router: Router,
     private authService: AuthenticationService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private loadingService: LoadingService
   ) {
     this.authService.refreshUser()
     this.$userName = authService.currentUser$.pipe(map(user => user.fullName))
@@ -45,14 +50,15 @@ export class OnboardingComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onSucceess(): void {
-    /** spinner starts on init */
+  onSuccess(): void {
     this.spinner.show();
-
+    this.loadingService.setLoadingTextQueue(this.isNewPractice ? this.loadingTextQueueNewPractice :  this.loadingTextQueueInvite)
     setTimeout(() => {
-      /** spinner ends after 5 seconds */
+      this.router.navigate(['/'])
+    }, 500);
+    setTimeout(() => {
       this.spinner.hide();
-    }, 5000);
+    }, 3750);
   }
 
   setSetupType(isNewPractice: boolean): void {
