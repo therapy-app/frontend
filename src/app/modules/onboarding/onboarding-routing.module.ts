@@ -16,7 +16,6 @@ export const routes: Routes = [
           { path: 'usage' },
           { path: 'invite' },
           { path: 'practice' },
-          { path: 'success' }
         ]
       },
     ]

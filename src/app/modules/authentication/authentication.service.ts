@@ -37,10 +37,13 @@ export class AuthenticationService {
       }))
   }
 
+  joinInvite(model: { inviteCode: string}): Observable<{}> {
+    return this.httpClient.post(`${this.baseUrl}/invite/join`, model, { withCredentials: true })
+  }
+
   getSignUpStep(): Observable<{}> {
     return this.httpClient.post(`${this.baseUrl}/auth/signin`, { withCredentials: true })
   }
-
 
   getAuthStatus(): boolean {
     return localStorage.getItem('userId') ? true : false

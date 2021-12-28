@@ -1,8 +1,7 @@
-<tui-stepper>
-  <button tuiStep routerLink="/onboarding/usage" icon="tuiIconStarFilled">Usage</button>
-  <button *ngIf="!isNewPractice" tuiStep routerLink="/onboarding/invite" icon="tuiIconSettings">Invite</button>
-  <button *ngIf="isNewPractice" tuiStep routerLink="/onboarding/practice" icon="tuiIconSettings">Practice</button>
-  <button tuiStep routerLink="/onboarding/success" icon="tuiIconDone">Success</button>
+<tui-stepper [activeItemIndex]="currentIndex">
+  <button tuiStep routerLink="/onboarding/usage" icon="tuiIconStarFilled">Set Usage</button>
+  <button *ngIf="router.url === '/onboarding/invite'" tuiStep routerLink="/onboarding/invite" icon="tuiIconSettings">Join Invite</button>
+  <button *ngIf="router.url === '/onboarding/practice'" tuiStep routerLink="/onboarding/practice" icon="tuiIconSettings">Create Practice</button>
 </tui-stepper>
 <div *ngIf="router.url === '/onboarding/usage'">
   <div class="title">
@@ -11,46 +10,40 @@
   </div>
   <div class="usage-selection row">
     <tui-action class="col-md" icon="tuiIconUsers" routerLink="/onboarding/invite" (click)="setSetupType(false)">
-      <h3>Join my therapy practice</h3>
-      <p></p>
+      <h3>Join your team</h3>
+      <p>Enter your invite code and join your collegues therapy practice.</p>
     </tui-action>
-    <tui-action class="col-md" icon="tuiIconUsers" routerLink="/onboarding/practice" (click)="setSetupType(true)">
+    <tui-action class="col-md" icon="tuiIconPlusCircleLarge" routerLink="/onboarding/practice" (click)="setSetupType(true)">
       <h3>Create therapy practice</h3>
-      <p></p>
+      <p>Set up therapyapp for your therapy practice.</p>
     </tui-action>
   </div>
 </div>
-<form *ngIf="router.url === '/onboarding/invite'">
-  <h1>Join your therapy practice</h1>
+<form *ngIf="router.url === '/onboarding/invite'" (ngSubmit)="onSubmit()">
+  <h1>Join therapy practice</h1>
   <div class="tui-form__row">
     <tui-input [formControl]="inviteCode" [textMask]="inviteCodeMask" minlength="9">
       Enter Invite-Code<span class="tui-required"></span>
     </tui-input>
     <tui-field-error></tui-field-error>
   </div>
-  <button class="tui-form__row" tuiButton type="submit" appearance="primary">
-    Verify Code
-  </button>
+  <div class="tui-form__row d-flex justify-content-end">
+    <button tuiButton type="submit" appearance="primary">
+      Continue
+    </button>
+  </div>
 </form>
-<form *ngIf="router.url === '/onboarding/practice'">
+<form *ngIf="router.url === '/onboarding/practice'" (ngSubmit)="onSubmit()">
   <h1>Create therapy practice</h1>
   <div class="tui-form__row">
-    <tui-input [formControl]="inviteCode" [textMask]="inviteCodeMask" minlength="9">
-      Enter Invite-Code<span class="tui-required"></span>
+    <tui-input [formControl]="practiceName" minlength="1">
+      Practice name<span class="tui-required"></span>
     </tui-input>
     <tui-field-error></tui-field-error>
   </div>
-  <button class="tui-form__row" [disabled]="inviteCode.invalid" (click)="verifyInvite()" tuiButton type="button" appearance="primary">
-    Verify Code
-  </button>
-</form>
-<div class="success-wrapper" *ngIf="router.url === '/onboarding/success'">
-  <div class="success-icon">
-    <tui-svg src="tuiIconDone"></tui-svg>
+  <div class="tui-form__row d-flex justify-content-end">
+    <button [disabled]="practiceName.invalid" tuiButton type="submit" appearance="primary">
+      Continue
+    </button>
   </div>
-  <h1>Congratulations, {{ ($userName | async) }}</h1>
-  <h3>You have successfully set up your account.</h3>
-  <button class="tui-form__row" tuiButton (click)="onSuccess()" type="submit" appearance="primary">
-    Launch therapyapp
-  </button>
-</div>
+</form>

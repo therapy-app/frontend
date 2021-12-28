@@ -1,14 +1,14 @@
 <h1 class="tui-text_h6">Dashboard</h1>
 <div class="row justify-content-between mb-3">
-  <span class="col-lg-3 mb-2 tui-text_h4">Hi, {{ ($userName | async) }}</span>
-  <div class="col-lg-8 row d-flex justify-content-lg-end">
-    <button class="mx-2 mb-2" tuiButton type="button" appearance="secondary">
+  <span class="mb-2 tui-text_h4 col-auto">Hi, {{ ($userName | async) }}</span>
+  <div class="d-flex justify-content-lg-end col-auto row">
+    <button class="col-md-4 mx-2 mb-2" tuiButton type="button" appearance="secondary">
       New meeting
     </button>
-    <button class="mx-2 mb-2" tuiButton type="button" appearance="secondary">
+    <button class="col-md-4 mx-2 mb-2" tuiButton type="button" appearance="secondary">
       New task
     </button>
-    <button class="mx-2 mb-2" tuiButton type="button" appearance="secondary">
+    <button class="col-md-4 mx-2 mb-2" tuiButton type="button" appearance="secondary">
       New report
     </button>
   </div>
