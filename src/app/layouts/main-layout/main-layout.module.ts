@@ -14,6 +14,7 @@ import {TuiActiveZoneModule} from '@taiga-ui/cdk';
 import { MainLayoutRoutingModule } from './mail-layout.routing.module';
 import {TuiHostedDropdownModule} from '@taiga-ui/core';
 import { TranslationsModule } from 'src/app/shared/translations.module';
+import {TuiDataListModule} from '@taiga-ui/core';
 
 @NgModule({
   declarations: [MainLayoutComponent, SideNavContentComponent],
@@ -33,7 +34,8 @@ import { TranslationsModule } from 'src/app/shared/translations.module';
     TuiActiveZoneModule,
     TuiHostedDropdownModule,
     TranslationsModule,
-    TuiSvgModule
+    TuiSvgModule,
+    TuiDataListModule
   ],
   providers: [],
   exports: []

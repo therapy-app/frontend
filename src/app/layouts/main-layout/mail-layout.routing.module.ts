@@ -18,6 +18,9 @@ export const routes: Routes = [
           import('../../modules/dashboard/dashboard.module').then(
             (m) => m.DashboardModule
           ),
+        data: {
+          title: 'Dashboard'
+        }
       },
       {
         path: 'patients',
@@ -25,6 +28,9 @@ export const routes: Routes = [
           import('../../modules/patients/patients.module').then(
             (m) => m.PatientsModule
           ),
+        data: {
+          title: 'Patients'
+        }
       },
     ],
   }

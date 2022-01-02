@@ -1,5 +1,34 @@
 <div>
   <a class="logo">therapyapp<sup>alpha</sup></a>
+  <tui-hosted-dropdown [content]="dropdown" [(open)]="open" class="tenant-selection">
+    <div class="wrapper">
+      <div class="tui-text_body-m">
+        {{ currentTenantName }}
+      </div>
+      <tui-svg
+        src="tuiIconChevronDown"
+        class="arrow"
+        [class.arrow_open]="open">
+      </tui-svg>
+    </div>
+  </tui-hosted-dropdown>
+  <ng-template #dropdown>
+    <tui-data-list>
+      <tui-opt-group>
+        <button
+        *ngFor="let tenant of backendService.tenants$ | async"
+        tuiOption
+        (click)="changeTenant(tenant)"
+        >
+        {{ tenant.name }}
+      </button>
+    </tui-opt-group>
+    <tui-opt-group class="tenant-actions">
+      <button tuiOption (click)="joinTenant()">Join Practice</button>
+      <button tuiOption (click)="createTenant()">Create Practice</button>
+    </tui-opt-group>
+    </tui-data-list>
+  </ng-template>
   <div fxLayout="column" fxLayoutGap="10px" class="content">
     <tui-accordion [rounded]="false">
       <tui-accordion-item

@@ -6,6 +6,9 @@ import { BehaviorSubject } from 'rxjs'
 })
 export class LoadingService {
 
+  initialLoading = new BehaviorSubject<boolean>(true)
+  initialLoading$ = this.initialLoading.asObservable()
+
   currentLoadingText = new BehaviorSubject<string>('')
   currentLoadingText$ = this.currentLoadingText.asObservable()
 

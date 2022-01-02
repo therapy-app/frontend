@@ -1,7 +1,8 @@
 <tui-stepper [activeItemIndex]="currentIndex">
   <button tuiStep routerLink="/onboarding/usage" icon="tuiIconStarFilled">Set Usage</button>
-  <button *ngIf="router.url === '/onboarding/invite'" tuiStep routerLink="/onboarding/invite" icon="tuiIconSettings">Join Invite</button>
-  <button *ngIf="router.url === '/onboarding/practice'" tuiStep routerLink="/onboarding/practice" icon="tuiIconSettings">Create Practice</button>
+  <button *ngIf="isInvitee" tuiStep routerLink="/onboarding/invite" icon="tuiIconMail">Join Invite</button>
+  <button *ngIf="!isInvitee" tuiStep routerLink="/onboarding/pricing" icon="tuiIconCard">Pricing</button>
+  <button *ngIf="!isInvitee" tuiStep routerLink="/onboarding/practice" icon="tuiIconSettings">Create Practice</button>
 </tui-stepper>
 <div *ngIf="router.url === '/onboarding/usage'">
   <div class="title">
@@ -9,11 +10,11 @@
     <h3>How are you planning to use therapyapp?</h3>
   </div>
   <div class="usage-selection row">
-    <tui-action class="col-md" icon="tuiIconUsers" routerLink="/onboarding/invite" (click)="setSetupType(false)">
+    <tui-action class="col-md" icon="tuiIconUsers" routerLink="/onboarding/invite" (click)="setSetupType(true)">
       <h3>Join your team</h3>
       <p>Enter your invite code and join your collegues therapy practice.</p>
     </tui-action>
-    <tui-action class="col-md" icon="tuiIconPlusCircleLarge" routerLink="/onboarding/practice" (click)="setSetupType(true)">
+    <tui-action class="col-md" icon="tuiIconPlusCircleLarge" routerLink="/onboarding/pricing" (click)="setSetupType(false)">
       <h3>Create therapy practice</h3>
       <p>Set up therapyapp for your therapy practice.</p>
     </tui-action>
@@ -32,6 +33,27 @@
       Continue
     </button>
   </div>
+</form>
+<form *ngIf="router.url === '/onboarding/pricing'">
+  <h1>Choose pricing tier</h1>
+  <tui-action class="col-md" icon="tuiIconStarFilled" routerLink="/onboarding/practice" (click)="setPricingTier()">
+    <h3>Alpha Tester</h3>
+    <div class="tui-text_body-m">Join as an alpha-tester.</div>
+    <div class="my-3">
+      <div class="tui-text_h4">
+        0$/mo
+      </div>
+      <div>(valid for alpha phase)</div>
+    </div>
+    <div>Alpha features</div>
+    <ul class="tui-list">
+      <li class="tui-list__item">Patient management</li>
+      <li class="tui-list__item">Appointment management</li>
+      <li class="tui-list__item">Team management</li>
+      <li class="tui-list__item">Templates</li>
+      <li class="tui-list__item">SMS Notifications</li>
+  </ul>
+  </tui-action>
 </form>
 <form *ngIf="router.url === '/onboarding/practice'" (ngSubmit)="onSubmit()">
   <h1>Create therapy practice</h1>

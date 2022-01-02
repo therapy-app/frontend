@@ -8,14 +8,14 @@ const routes: Routes = [
     path: '',
     canActivate: [AuthGuard],
     loadChildren: () =>
-    import('./layouts/main-layout/main-layout.module').then(
-      (m) => m.MainLayoutModule
+      import('./layouts/main-layout/main-layout.module').then(
+        (m) => m.MainLayoutModule
       ),
     },
-    {
-      path: 'onboarding',
-      canActivate: [AuthGuard],
-      loadChildren: () =>
+  {
+    path: 'onboarding',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
       import('./modules/onboarding/onboarding.module').then(
         (m) => m.OnboardingModule
       ),

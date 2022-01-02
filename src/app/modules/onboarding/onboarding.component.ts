@@ -1,3 +1,4 @@
+import { BackendService } from 'src/app/services/backend.service';
 import { LoadingService } from './../../services/loading.service';
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, Validators } from '@angular/forms'
@@ -18,11 +19,12 @@ export class OnboardingComponent implements OnInit {
   $userName = new Observable<string>()
   currentIndex = 0
 
+  pricingTier = this.fb.control('', Validators.required)
 
   loadingTextQueueInvite = ['Joining therapy practice...', 'Assigning storage...', 'Verifying Authentication...', 'Setting up your profile...']
   loadingTextQueueNewPractice = ['Creating therapy practice...', 'Assigning storage...', 'Verifying Authentication...', 'Setting up your profile...']
 
-  isNewPractice = false
+  isInvitee = false
 
   readonly inviteCodeMask = {
     guide: false,
@@ -44,7 +46,8 @@ export class OnboardingComponent implements OnInit {
     public router: Router,
     private authService: AuthenticationService,
     private spinner: NgxSpinnerService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private backendService: BackendService
   ) {
     this.authService.refreshUser()
     this.$userName = authService.currentUser$.pipe(map(user => user.fullName))
@@ -54,31 +57,37 @@ export class OnboardingComponent implements OnInit {
     merge(of(true).pipe(take(1)), this.router.events.pipe(debounceTime(0)))
     .pipe(delay(1))
     .subscribe(() => {
-      switch(this.router.url) {
-        case '/onboarding/usage': this.currentIndex = 0; break;
-        case '/onboarding/invite': this.currentIndex = 1; break;
-        case '/onboarding/practice': this.currentIndex = 1; break;
+      switch (this.router.url) {
+        case '/onboarding/usage': this.currentIndex = 0; break
+        case '/onboarding/invite': this.currentIndex = 1; break
+        case '/onboarding/pricing': this.currentIndex = 1; break
+        case '/onboarding/practice': this.currentIndex = 2; break
       }
     })
   }
 
-  showLoading(): void {
+  showLoading(textQueue: string[]): void {
     this.spinner.show()
-    this.loadingService.setLoadingTextQueue(this.isNewPractice ? this.loadingTextQueueNewPractice :  this.loadingTextQueueInvite)
-    setTimeout(() => this.router.navigate(['/']), 500);
-    setTimeout(() => this.spinner.hide(), 3750);
+    this.loadingService.setLoadingTextQueue(textQueue)
+    setTimeout(() => this.router.navigate(['/']), 500)
+    setTimeout(() => this.spinner.hide(), 3750)
   }
 
-  setSetupType(isNewPractice: boolean): void {
-    this.isNewPractice = isNewPractice
+  setSetupType(isInvitee: boolean): void {
+    this.isInvitee = isInvitee
+  }
+
+  setPricingTier(): void {
+
   }
 
   onSubmit(): void {
-    if (!this.isNewPractice) {
+    console.log(this.isInvitee)
+    if (this.isInvitee) {
       this.authService.joinInvite(this.inviteCode.value).subscribe()
-      this.showLoading()
+      this.showLoading(this.loadingTextQueueInvite)
       return
     }
-    this.showLoading()
+    this.backendService.createTenant({name: this.practiceName.value}).subscribe(() => this.showLoading(this.loadingTextQueueNewPractice))
   }
 }

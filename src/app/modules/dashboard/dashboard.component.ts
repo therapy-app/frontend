@@ -1,3 +1,4 @@
+import { LoadingService } from 'src/app/services/loading.service';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../authentication/authentication.service';
@@ -21,7 +22,10 @@ export class DashboardComponent implements OnInit {
     [350, 90],
   ]
 
-  constructor(private authService: AuthenticationService) {
+  constructor(
+    private authService: AuthenticationService,
+    public loadingService: LoadingService
+  ) {
     this.$userName = authService.currentUser$.pipe(map(user => user.fullName))
   }
 

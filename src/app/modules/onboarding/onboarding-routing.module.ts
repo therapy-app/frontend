@@ -15,6 +15,7 @@ export const routes: Routes = [
           { path: '', redirectTo: 'usage' },
           { path: 'usage' },
           { path: 'invite' },
+          { path: 'pricing' },
           { path: 'practice' },
         ]
       },

@@ -23,7 +23,9 @@
         <th *tuiHead="'actions'" [sorter]="null" tuiTh></th>
       </tr>
     </thead>
-    <tbody tuiTbody [data]="data">
+    <tbody tuiTbody [data]="data"
+      [class.tui-skeleton]="loadingService.initialLoading$ | async"
+      [class.fade-in-animated]="!(loadingService.initialLoading$ | async)">
       <tr *tuiRow="let item of data" tuiTr>
         <td *tuiCell="'name'" tuiTd>{{ item.name }}</td>
         <td *tuiCell="'phonenumber'" tuiTd>{{ item.name }}</td>

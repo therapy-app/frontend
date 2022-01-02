@@ -1,5 +1,6 @@
 import { BackendService } from './../../services/backend.service';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-patients',
@@ -21,7 +22,10 @@ export class PatientsComponent implements OnInit {
 
   readonly columns = ['name', 'phonenumber', 'email', 'nextAppointment', 'actions']
 
-  constructor(private backend: BackendService) {}
+  constructor(
+    private backend: BackendService,
+    public loadingService: LoadingService
+  ) {}
 
   ngOnInit(): void {
     this.backend.getPatients().subscribe()
