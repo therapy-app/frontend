@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {TuiTableModule} from '@taiga-ui/addon-table';
 import { TaigaUiModule } from 'src/app/shared/taiga-ui.module';
 import { TranslationsModule } from 'src/app/shared/translations.module';
+import { TuiTextfieldControllerModule } from '@taiga-ui/core';
 
 export const routes: Routes = [
   { path: '', component: PatientsComponent },
@@ -18,7 +19,8 @@ export const routes: Routes = [
     TuiTableModule,
     RouterModule.forChild(routes),
     TaigaUiModule,
-    TranslationsModule
+    TranslationsModule,
+    TuiTextfieldControllerModule,
   ]
 })
 export class PatientsModule { }

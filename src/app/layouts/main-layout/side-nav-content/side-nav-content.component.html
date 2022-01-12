@@ -6,9 +6,10 @@
         {{ currentTenantName }}
       </div>
       <tui-svg
-        src="tuiIconChevronDown"
+        src="tuiIconChevronDownLarge"
         class="arrow"
-        [class.arrow_open]="open">
+        [class.open]="open"
+        >
       </tui-svg>
     </div>
   </tui-hosted-dropdown>
@@ -19,8 +20,9 @@
         *ngFor="let tenant of backendService.tenants$ | async"
         tuiOption
         (click)="changeTenant(tenant)"
+        [class.active]="authService.currentUser.value.selectedTenant === tenant.id"
         >
-        {{ tenant.name }}
+        {{ tenant.name }} <tui-svg src="tuiIconUsers"></tui-svg>
       </button>
     </tui-opt-group>
     <tui-opt-group class="tenant-actions">

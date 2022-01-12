@@ -2,10 +2,11 @@
 <div class="filters row mb-3">
   <tui-primitive-textfield
     iconAlign="left"
-    tuiTextfieldSize="s"
+    tuiTextfieldSize="l"
     iconContent="tuiIconSearch"
     class="col-md-6"
-  >
+    [tuiTextfieldLabelOutside]="true"
+    >
     {{ 'SEARCH' | translate }}
   </tui-primitive-textfield>
   <div class="justify-content-end">
