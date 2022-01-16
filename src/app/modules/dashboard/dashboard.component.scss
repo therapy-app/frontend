@@ -12,6 +12,14 @@ button {
   height: 275px;
   background-color: white;
   border-radius: 10px;
+
+  &.redirect {
+    cursor: pointer;
+  }
+
+  &.gradient-1 {
+    background: linear-gradient(to bottom right, #b2eaff, #d6d8e7);
+  }
 }
 
 .calendar {
@@ -27,4 +35,9 @@ tui-line-chart {
 
 .welcome-text {
   min-width: 250px;
+}
+
+.sub-icon {
+  width: 35px;
+  height: 25px;
 }

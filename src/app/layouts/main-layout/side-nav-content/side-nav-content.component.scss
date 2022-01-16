@@ -36,12 +36,10 @@
 }
 
 .logo {
-  display: flex;
-  align-items: center;
-  font-weight: 600;
-  font-size: 15px;
-  height: 54px;
-  margin-left: 20px;
+  padding: 15px;
+  img {
+    height: 36px;
+  }
 }
 
 .tenant-selection {

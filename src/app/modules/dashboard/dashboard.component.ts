@@ -43,7 +43,7 @@ export class DashboardComponent implements OnInit {
       Fullname: 'Richard Roe'
     },
     title: 'Team event',
-    description: 'Hello everyone. At 6pm we\'ll gather in the welcome are, dont be late. 😄 '
+    description: 'Hello everyone. At 6pm we\'ll gather in the welcome area, dont be late. 😄 '
   }
 
   appointments = [

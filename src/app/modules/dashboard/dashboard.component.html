@@ -40,45 +40,36 @@
 <div class="row">
   <div class="col-sm-4 mb-3">
     <div
-      class="container content-island-short p-3"
+      class="container content-island-short redirect p-3 gradient-1"
       [class.tui-skeleton]="loadingService.initialLoading$ | async"
       [class.fade-in-animated]="!(loadingService.initialLoading$ | async)"
     >
-      <div class="row justify-content-between">
-        <h3 class="col-auto">Up next</h3>
-        <div class="col-auto">
-          {{ nextAppointment.date.toLocaleTimeString() }} -
-            {{ nextAppointment.date.toLocaleTimeString() }}
+      <h3 class="col mb-2">Up next</h3>
+      <div class="tui-text_h6">
+        {{ nextAppointment.type }}
+      </div>
+      <div class="col-auto">
+        {{ nextAppointment.date.toLocaleTimeString() }} -
+        {{ nextAppointment.date.toLocaleTimeString() }}
+      </div>
+      <div class="col">
+        <div class="row">
+          <div class="col-auto sub-icon">
+            <tui-svg src="tuiIconPin"></tui-svg>
+          </div>
+          <div class="col-auto">{{ nextAppointment.room }}</div>
         </div>
       </div>
-      <div>{{ nextAppointment.type }}</div>
-      <div>{{ nextAppointment.people[0].Fullname }}</div>
-      <div>Room: {{ nextAppointment.room }}</div>
-      <a>view details</a>
-    </div>
-  </div>
-  <div class="col-sm-4 mb-3">
-    <div
-      class="content-island-short p-3"
-      [class.tui-skeleton]="loadingService.initialLoading$ | async"
-      [class.fade-in-animated]="!(loadingService.initialLoading$ | async)"
-    >
-      <h3>Scheduled appointments</h3>
-      <div class="row justify-content-between">
-        <div class="col-auto">Today</div>
-        <div class="col-auto">{{ appoiontmentsScheduled.day }}</div>
-      </div>
-      <div class="row justify-content-between">
-        <div class="col-auto">Week</div>
-        <div class="col-auto">{{ appoiontmentsScheduled.week }}</div>
-      </div>
-      <div class="row justify-content-between">
-        <div class="col-auto">Month</div>
-        <div class="col-auto">{{ appoiontmentsScheduled.month }}</div>
-      </div>
-      <div class="row justify-content-between">
-        <div class="col-auto">Total</div>
-        <div class="col-auto">{{ appoiontmentsScheduled.total }}</div>
+      <div class="col container-fluid">
+        <div class="row justify-content-end">
+          <tui-avatar
+            *ngFor="let person of nextAppointment.people"
+            [title]="person.Fullname"
+            [text]="person.Fullname"
+            [rounded]="true"
+            [autoColor]="true"
+          ></tui-avatar>
+        </div>
       </div>
     </div>
   </div>
@@ -88,22 +79,61 @@
       [class.tui-skeleton]="loadingService.initialLoading$ | async"
       [class.fade-in-animated]="!(loadingService.initialLoading$ | async)"
     >
-      <h3>Time worked</h3>
-      <div class="row justify-content-between">
-        <div class="col-auto">Today</div>
-        <div class="col-auto">{{ secondsWorked.day / 60 / 60 }}</div>
+      <h3 class="mb-2">Scheduled appointments</h3>
+      <div class="row justify-content-between mb-2">
+        <div class="col-auto tui-text_h6">Today</div>
+        <div class="col-auto tui-text_h6">{{ appoiontmentsScheduled.day }}</div>
       </div>
       <div class="row justify-content-between">
         <div class="col-auto">Week</div>
-        <div class="col-auto">{{ secondsWorked.week / 60 / 60 }}</div>
+        <div class="col-auto tui-text_body-m">
+          {{ appoiontmentsScheduled.week }}
+        </div>
       </div>
       <div class="row justify-content-between">
         <div class="col-auto">Month</div>
-        <div class="col-auto">{{ secondsWorked.month / 60 / 60 }}</div>
+        <div class="col-auto tui-text_body-m">
+          {{ appoiontmentsScheduled.month }}
+        </div>
       </div>
       <div class="row justify-content-between">
         <div class="col-auto">Total</div>
-        <div class="col-auto">{{ secondsWorked.total / 60 / 60 }}</div>
+        <div class="col-auto tui-text_body-m">
+          {{ appoiontmentsScheduled.total }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4 mb-3">
+    <div
+      class="content-island-short p-3"
+      [class.tui-skeleton]="loadingService.initialLoading$ | async"
+      [class.fade-in-animated]="!(loadingService.initialLoading$ | async)"
+    >
+      <h3 class="mb-2">Time worked</h3>
+      <div class="row justify-content-between mb-2">
+        <div class="col-auto tui-text_h6">Today</div>
+        <div class="col-auto tui-text_h6">
+          {{ secondsWorked.day / 60 / 60 | number: ".1-1" }} h
+        </div>
+      </div>
+      <div class="row justify-content-between">
+        <div class="col-auto">Week</div>
+        <div class="col-auto tui-text_body-m">
+          {{ secondsWorked.week / 60 / 60 | number: ".1-1" }} h
+        </div>
+      </div>
+      <div class="row justify-content-between">
+        <div class="col-auto">Month</div>
+        <div class="col-auto tui-text_body-m">
+          {{ secondsWorked.month / 60 / 60 | number: ".1-1" }} h
+        </div>
+      </div>
+      <div class="row justify-content-between">
+        <div class="col-auto">Total</div>
+        <div class="col-auto tui-text_body-m">
+          {{ secondsWorked.total / 60 / 60 | number: ".1-1" }} h
+        </div>
       </div>
     </div>
   </div>
@@ -115,15 +145,20 @@
       [class.tui-skeleton]="loadingService.initialLoading$ | async"
       [class.fade-in-animated]="!(loadingService.initialLoading$ | async)"
     >
+      <h3 class="col-auto mb-2">News</h3>
       <div class="row justify-content-between">
-        <h3 class="col-auto">News</h3>
         <div class="col-auto">
-          {{ news.author.Fullname }}
+          <h4 class="col-auto tui-text_h6">{{ news.title }}</h4>
+          <div>{{ news.description }}</div>
         </div>
-      </div>
-      <div class="container">
-        <h4>{{ news.title }}</h4>
-        <div>{{ news.description }}</div>
+        <div class="col-auto">
+          <tui-avatar
+            [title]="news.author.Fullname"
+            [text]="news.author.Fullname"
+            [rounded]="true"
+            [autoColor]="true"
+          ></tui-avatar>
+        </div>
       </div>
     </div>
     <div
@@ -149,14 +184,25 @@
       [class.tui-skeleton]="loadingService.initialLoading$ | async"
       [class.fade-in-animated]="!(loadingService.initialLoading$ | async)"
     >
-      <h3>Next appointments</h3>
-      <div *ngFor="let appointment of appointments">
-        <div class="container">
+      <h3 class="mb-2">Upcoming appointments</h3>
+      <div class="row justify-content-between mb-3" *ngFor="let appointment of appointments">
+        <div class="col-auto">
+          <div class="tui-text_h6">
+            {{ appointment.type }}
+          </div>
           <div>
             {{ appointment.date.toLocaleTimeString() }} -
             {{ appointment.date.toLocaleTimeString() }}
           </div>
-          {{ appointment.type }}
+        </div>
+        <div class="col-auto">
+          <tui-avatar
+            *ngFor="let person of nextAppointment.people"
+            [title]="person.Fullname"
+            [text]="person.Fullname"
+            [rounded]="true"
+            [autoColor]="true"
+          ></tui-avatar>
         </div>
       </div>
     </div>
