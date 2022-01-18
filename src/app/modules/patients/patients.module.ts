@@ -6,14 +6,16 @@ import {TuiTableModule} from '@taiga-ui/addon-table';
 import { TaigaUiModule } from 'src/app/shared/taiga-ui.module';
 import { TranslationsModule } from 'src/app/shared/translations.module';
 import { TuiTextfieldControllerModule } from '@taiga-ui/core';
+import { EditPatientComponent } from './edit-patient/edit-patient.component';
 
 export const routes: Routes = [
   { path: '', component: PatientsComponent },
+  { path: 'add', component: EditPatientComponent },
 ]
 
 
 @NgModule({
-  declarations: [PatientsComponent],
+  declarations: [PatientsComponent, EditPatientComponent],
   imports: [
     CommonModule,
     TuiTableModule,

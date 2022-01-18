@@ -83,18 +83,18 @@ main {
 
 @media (min-width: 1200px) {
   .container {
-    max-width: calc(1140px - 250px);
+    max-width: calc(1140px - 200px);
   }
 }
 
 @media (min-width: 1400px) {
   .container {
-    max-width: calc(1320px - 250px);
+    max-width: calc(1320px - 200px);
   }
 }
 
 @media (min-width: 1600px) {
   .container {
-    max-width: calc(1520px - 250px);
+    max-width: calc(1520px - 200px);
   }
 }

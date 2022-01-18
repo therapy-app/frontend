@@ -39,29 +39,22 @@
 </div>
 <div class="row">
   <div class="col-sm-4 mb-3">
-    <div
-      class="container content-island-short redirect p-3 gradient-1"
+    <tui-island
+      class="short"
       [class.tui-skeleton]="loadingService.initialLoading$ | async"
       [class.fade-in-animated]="!(loadingService.initialLoading$ | async)"
     >
-      <h3 class="col mb-2">Up next</h3>
-      <div class="tui-text_h6">
-        {{ nextAppointment.type }}
-      </div>
-      <div class="col-auto">
-        {{ nextAppointment.date.toLocaleTimeString() }} -
-        {{ nextAppointment.date.toLocaleTimeString() }}
-      </div>
-      <div class="col">
+      <p class="tui-island__category">Up next</p>
+      <h3 class="tui-island__title">{{ nextAppointment.type }}</h3>
+      <div class="tui-island__paragraph">
+        <div>{{ nextAppointment.date.toLocaleTimeString() }} - {{ nextAppointment.date.toLocaleTimeString() }}</div>
         <div class="row">
           <div class="col-auto sub-icon">
             <tui-svg src="tuiIconPin"></tui-svg>
           </div>
           <div class="col-auto">{{ nextAppointment.room }}</div>
         </div>
-      </div>
-      <div class="col container-fluid">
-        <div class="row justify-content-end">
+        <!-- <div class="row justify-content-end">
           <tui-avatar
             *ngFor="let person of nextAppointment.people"
             [title]="person.Fullname"
@@ -69,83 +62,107 @@
             [rounded]="true"
             [autoColor]="true"
           ></tui-avatar>
-        </div>
+        </div> -->
       </div>
-    </div>
+    </tui-island>
   </div>
   <div class="col-sm-4 mb-3">
-    <div
-      class="content-island-short p-3"
+    <tui-island
+      class="short"
       [class.tui-skeleton]="loadingService.initialLoading$ | async"
       [class.fade-in-animated]="!(loadingService.initialLoading$ | async)"
     >
-      <h3 class="mb-2">Scheduled appointments</h3>
-      <div class="row justify-content-between mb-2">
-        <div class="col-auto tui-text_h6">Today</div>
-        <div class="col-auto tui-text_h6">{{ appoiontmentsScheduled.day }}</div>
-      </div>
-      <div class="row justify-content-between">
-        <div class="col-auto">Week</div>
-        <div class="col-auto tui-text_body-m">
-          {{ appoiontmentsScheduled.week }}
+      <p class="tui-island__category">Scheduled appointments</p>
+      <div class="row">
+        <div class="col">
+          <h3 class="tui-island__title mb-0">{{ appoiontmentsScheduled.day }} Appointments</h3>
+          <div class="tui-island__paragraph">Today</div>
+        </div>
+        <div class="col chart">
+          <tui-line-chart
+          [x]="0"
+          [y]="0"
+          [width]="4"
+          [height]="24"
+          [smoothingFactor]="30"
+          [value]="workload"
+          [filled]="true"
+          ></tui-line-chart>
         </div>
       </div>
-      <div class="row justify-content-between">
-        <div class="col-auto">Month</div>
-        <div class="col-auto tui-text_body-m">
-          {{ appoiontmentsScheduled.month }}
+      <!-- <div class="tui-island__paragraph">
+        <div class="row justify-content-between">
+          <div class="col-auto">Week</div>
+          <div class="col-auto tui-text_body-m">
+            {{ appoiontmentsScheduled.week }}
+          </div>
         </div>
-      </div>
-      <div class="row justify-content-between">
-        <div class="col-auto">Total</div>
-        <div class="col-auto tui-text_body-m">
-          {{ appoiontmentsScheduled.total }}
+        <div class="row justify-content-between">
+          <div class="col-auto">Month</div>
+          <div class="col-auto tui-text_body-m">
+            {{ appoiontmentsScheduled.month }}
+          </div>
         </div>
-      </div>
-    </div>
+        <div class="row justify-content-between">
+          <div class="col-auto">Total</div>
+          <div class="col-auto tui-text_body-m">
+            {{ appoiontmentsScheduled.total }}
+          </div>
+        </div>
+      </div> -->
+    </tui-island>
   </div>
   <div class="col-sm-4 mb-3">
-    <div
-      class="content-island-short p-3"
+    <tui-island
+      class="short"
       [class.tui-skeleton]="loadingService.initialLoading$ | async"
       [class.fade-in-animated]="!(loadingService.initialLoading$ | async)"
     >
-      <h3 class="mb-2">Time worked</h3>
-      <div class="row justify-content-between mb-2">
-        <div class="col-auto tui-text_h6">Today</div>
-        <div class="col-auto tui-text_h6">
-          {{ secondsWorked.day / 60 / 60 | number: ".1-1" }} h
-        </div>
+      <p class="tui-island__category">Time worked</p>
+      <div class="chart mb-2">
+        <tui-line-chart
+        [x]="0"
+        [y]="0"
+        [width]="4"
+        [height]="24"
+        [smoothingFactor]="30"
+        [value]="workload"
+        [filled]="true"
+        ></tui-line-chart>
       </div>
-      <div class="row justify-content-between">
-        <div class="col-auto">Week</div>
-        <div class="col-auto tui-text_body-m">
-          {{ secondsWorked.week / 60 / 60 | number: ".1-1" }} h
+      <h3 class="tui-island__title mb-0">{{ secondsWorked.day / 60 / 60 | number: ".1-1" }} h worked</h3>
+      <div class="tui-island__paragraph">Today</div>
+      <!-- <div class="tui-island__paragraph">
+        <div class="row justify-content-between">
+          <div class="col-auto">Week</div>
+          <div class="col-auto tui-text_body-m">
+            {{ secondsWorked.week / 60 / 60 | number: ".1-1" }} h
+          </div>
         </div>
-      </div>
-      <div class="row justify-content-between">
-        <div class="col-auto">Month</div>
-        <div class="col-auto tui-text_body-m">
-          {{ secondsWorked.month / 60 / 60 | number: ".1-1" }} h
+        <div class="row justify-content-between">
+          <div class="col-auto">Month</div>
+          <div class="col-auto tui-text_body-m">
+            {{ secondsWorked.month / 60 / 60 | number: ".1-1" }} h
+          </div>
         </div>
-      </div>
-      <div class="row justify-content-between">
-        <div class="col-auto">Total</div>
-        <div class="col-auto tui-text_body-m">
-          {{ secondsWorked.total / 60 / 60 | number: ".1-1" }} h
+        <div class="row justify-content-between">
+          <div class="col-auto">Total</div>
+          <div class="col-auto tui-text_body-m">
+            {{ secondsWorked.total / 60 / 60 | number: ".1-1" }} h
+          </div>
         </div>
-      </div>
-    </div>
+      </div> -->
+    </tui-island>
   </div>
 </div>
 <div class="row">
   <div class="col-md-6">
-    <div
-      class="content-island mb-3 p-3"
+    <tui-island
+      class="mb-3"
       [class.tui-skeleton]="loadingService.initialLoading$ | async"
       [class.fade-in-animated]="!(loadingService.initialLoading$ | async)"
     >
-      <h3 class="col-auto mb-2">News</h3>
+      <h3 class="tui-island__category">News</h3>
       <div class="row justify-content-between">
         <div class="col-auto">
           <h4 class="col-auto tui-text_h6">{{ news.title }}</h4>
@@ -160,13 +177,13 @@
           ></tui-avatar>
         </div>
       </div>
-    </div>
-    <div
-      class="content-island mb-3 p-3"
+    </tui-island>
+    <tui-island
+      class="mb-3"
       [class.tui-skeleton]="loadingService.initialLoading$ | async"
       [class.fade-in-animated]="!(loadingService.initialLoading$ | async)"
     >
-      <h3>Workload</h3>
+      <h3 class="mb-2 tui-island__category">Workload</h3>
       <tui-line-chart
         [x]="0"
         [y]="0"
@@ -176,16 +193,23 @@
         [value]="workload"
         [filled]="true"
       ></tui-line-chart>
-    </div>
+    </tui-island>
   </div>
   <div class="col-md-6 mb-3">
-    <div
-      class="content-island calendar p-3"
+    <tui-island
+      class="calendar"
       [class.tui-skeleton]="loadingService.initialLoading$ | async"
       [class.fade-in-animated]="!(loadingService.initialLoading$ | async)"
     >
-      <h3 class="mb-2">Upcoming appointments</h3>
-      <div class="row justify-content-between mb-3" *ngFor="let appointment of appointments">
+      <h3 class="tui-island__category">Appointments</h3>
+      <tui-tabs class="mb-3">
+        <button tuiTab>Next appointments</button>
+        <button tuiTab>Ended appointments</button>
+      </tui-tabs>
+      <div
+        class="row justify-content-between mb-3"
+        *ngFor="let appointment of appointments"
+      >
         <div class="col-auto">
           <div class="tui-text_h6">
             {{ appointment.type }}
@@ -205,6 +229,6 @@
           ></tui-avatar>
         </div>
       </div>
-    </div>
+    </tui-island>
   </div>
 </div>

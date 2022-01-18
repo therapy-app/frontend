@@ -6,6 +6,8 @@ import { RouterModule, Routes } from '@angular/router'
 import {TuiLineChartModule} from '@taiga-ui/addon-charts'
 import { TuiSvgModule } from '@taiga-ui/core'
 import { TuiAvatarModule } from '@taiga-ui/kit'
+import {TuiIslandModule} from '@taiga-ui/kit';
+import {TuiTabsModule} from '@taiga-ui/kit';
 
 export const routes: Routes = [
   { path: '', component: DashboardComponent },
@@ -19,7 +21,9 @@ export const routes: Routes = [
     RouterModule.forChild(routes),
     TuiSvgModule,
     TuiLineChartModule,
-    TuiAvatarModule
+    TuiAvatarModule,
+    TuiIslandModule,
+    TuiTabsModule
   ],
   exports: []
 })

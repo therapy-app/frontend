@@ -32,7 +32,7 @@ export class SideNavContentComponent implements OnInit {
       multiMenu: true,
       childPages: [
         { caption: 'All Patients', routerLink: '', active: false },
-        { caption: 'All Patients', routerLink: '', active: false },
+        { caption: 'Add Patient', routerLink: 'add', active: false },
       ],
     },
   ]
