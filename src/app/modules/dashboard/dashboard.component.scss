@@ -4,12 +4,14 @@ button {
 }
 
 tui-island {
-  height: 250px;
+  min-height: 250px;
   &.short {
-    height: 150px;
+    height: calc(100% - 32.5px);
+    min-height: 150px;
   }
   .chart {
-    height: 75px;
+    display: flex;
+    align-items: center;
     tui-line-chart {
       height: 75px;
     }
@@ -18,6 +20,10 @@ tui-island {
 
 .calendar {
   min-height: calc(100% - 25px);
+}
+
+tui-tabs {
+  height: 50px;
 }
 
 tui-line-chart {
