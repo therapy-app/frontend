@@ -9,18 +9,36 @@ import { LoadingService } from 'src/app/services/loading.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PatientsComponent implements OnInit {
-  readonly data = [
+  readonly tableData = [
     {
       name: 'Alex Inkin',
-      balance: 1323525,
+      phonenumber: 1323525,
+      email: 1323525,
+      nextAppointment: 1323525,
     },
     {
-      name: 'Roman Sedov',
-      balance: 423242,
+      name: 'Alex Inkin',
+      phonenumber: 1323525,
+      email: 1323525,
+      nextAppointment: 1323525,
+    },
+    {
+      name: 'Alex Inkin',
+      phonenumber: 1323525,
+      email: 1323525,
+      nextAppointment: 1323525,
     },
   ] as const
 
-  readonly columns = ['name', 'phonenumber', 'email', 'nextAppointment', 'actions']
+  readonly menuItems = [
+    {title: 'View', iconName: 'tuiIconEyeOpen'},
+    {title: 'Copy', iconName: 'tuiIconCopy'},
+    {title: 'Delete', iconName: 'tuiIconTrash'},
+    {title: 'Move', iconName: 'tuiIconFolder'},
+  ] as const;
+
+
+  readonly columns = ['name', 'phonenumber', 'email', 'nextAppointment']
 
   constructor(
     private backend: BackendService,

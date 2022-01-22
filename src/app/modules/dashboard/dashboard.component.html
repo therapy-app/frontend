@@ -5,11 +5,21 @@
       [class.tui-skeleton]="loadingService.initialLoading$ | async"
       [class.fade-in-animated]="!(loadingService.initialLoading$ | async)"
       class="welcome-text"
-    >Hi, {{ $userName | async }}</div>
+    >
+      Hi, {{ $userName | async }}
+    </div>
   </div>
   <div class="d-flex justify-content-lg-end col-auto row">
     <button
-      class="col-md-4 mx-2 mb-2"
+      class="col-auto mx-2 mb-2"
+      tuiButton
+      type="button"
+      appearance="secondary"
+    >
+      New Appointment
+    </button>
+    <button
+      class="col-auto mx-2 mb-2"
       tuiButton
       type="button"
       appearance="secondary"
@@ -17,15 +27,7 @@
       New report
     </button>
     <button
-      class="col-md-4 mx-2 mb-2"
-      tuiButton
-      type="button"
-      appearance="secondary"
-    >
-      New Meeting
-    </button>
-    <button
-      class="col-md-4 mx-2 mb-2"
+      class="col-auto mx-2 mb-2"
       tuiButton
       type="button"
       appearance="secondary"
@@ -45,7 +47,10 @@
       <p class="tui-island__category">Up next</p>
       <h3 class="tui-island__title">{{ nextAppointment.type }}</h3>
       <div class="tui-island__paragraph">
-        <div>{{ nextAppointment.date.toLocaleTimeString() }} - {{ nextAppointment.date.toLocaleTimeString() }}</div>
+        <div>
+          {{ nextAppointment.date.toLocaleTimeString() }} -
+          {{ nextAppointment.date.toLocaleTimeString() }}
+        </div>
         <div class="row">
           <div class="col-auto sub-icon">
             <tui-svg src="tuiIconPin"></tui-svg>
@@ -63,8 +68,10 @@
     >
       <p class="tui-island__category">Scheduled appointments</p>
       <div class="row">
-        <div class="col-md-7">
-          <h3 class="tui-island__title mb-0">{{ appoiontmentsScheduled.day }} Appointments</h3>
+        <div class="col-md-6">
+          <h3 class="tui-island__title mb-0">
+            {{ appoiontmentsScheduled.day }} Appointments
+          </h3>
           <div class="tui-island__paragraph mb-3">Today</div>
           <div class="tui-text_body-s">
             <div class="row justify-content-between">
@@ -77,12 +84,13 @@
             </div>
             <div class="row justify-content-between">
               <div class="col-auto"><strong>Total</strong></div>
-              <div class="col-auto"><strong>{{ appoiontmentsScheduled.total }}</strong></div>
+              <div class="col-auto">
+                <strong>{{ appoiontmentsScheduled.total }}</strong>
+              </div>
             </div>
           </div>
-
         </div>
-        <div class="col-md-5 chart">
+        <div class="col-md-6 chart">
           <tui-line-chart
             [x]="0"
             [y]="0"
@@ -104,24 +112,35 @@
     >
       <p class="tui-island__category">Time worked</p>
       <div class="row">
-        <div class="col-md-7">
-          <h3 class="tui-island__title mb-0">{{ secondsWorked.day / 60 / 60 | number: ".0-0" }} h worked</h3>
+        <div class="col-md-6">
+          <h3 class="tui-island__title mb-0">
+            {{ secondsWorked.day / 60 / 60 | number: ".0-0" }} h worked
+          </h3>
           <div class="tui-island__paragraph mb-3">Today</div>
           <div class="row justify-content-between tui-text_body-s">
             <div class="col-auto">Week</div>
-            <div class="col-auto">{{ secondsWorked.week / 60 / 60 | number: ".0-0" }} h</div>
+            <div class="col-auto">
+              {{ secondsWorked.week / 60 / 60 | number: ".0-0" }} h
+            </div>
           </div>
           <div class="row justify-content-between tui-text_body-s">
             <div class="col-auto">Month</div>
-            <div class="col-auto">{{ secondsWorked.month / 60 / 60 | number: ".0-0" }} h</div>
+            <div class="col-auto">
+              {{ secondsWorked.month / 60 / 60 | number: ".0-0" }} h
+            </div>
           </div>
           <div class="row justify-content-between tui-text_body-s">
             <div class="col-auto"><strong>Total</strong></div>
-            <div class="col-auto"><strong>{{ secondsWorked.total / 60 / 60 | number: ".0-0" }} h</strong></div>
+            <div class="col-auto">
+              <strong
+                >{{ secondsWorked.total / 60 / 60 | number: ".0-0" }} h</strong
+              >
+            </div>
           </div>
         </div>
-        <div class="col-md-5 chart">
+        <div class="col-md-6 chart">
           <tui-line-chart
+            class="worked-hours"
             [x]="0"
             [y]="0"
             [width]="4"

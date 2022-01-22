@@ -1,3 +1,4 @@
+import { SideNavService } from './side-nav.service';
 import { BackendService } from 'src/app/services/backend.service';
 import { AuthenticationService } from './../../../modules/authentication/authentication.service';
 import { AfterContentInit, Component, OnInit } from '@angular/core';
@@ -29,11 +30,7 @@ export class SideNavContentComponent implements OnInit {
       routerLink: 'patients',
       icon: 'user',
       active: false,
-      multiMenu: true,
-      childPages: [
-        { caption: 'All Patients', routerLink: '', active: false },
-        { caption: 'Add Patient', routerLink: 'add', active: false },
-      ],
+      multiMenu: false,
     },
   ]
 
@@ -43,6 +40,7 @@ export class SideNavContentComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     public authService: AuthenticationService,
+    private sideNavService: SideNavService,
     private backendService: BackendService
   ) {
     authService.currentUser$.subscribe((user) => {
@@ -58,11 +56,15 @@ export class SideNavContentComponent implements OnInit {
   ngOnInit(): void {
     merge(
       this.route.params,
-      this.router.events.pipe(debounceTime(0))
+      this.router.events.pipe(debounceTime(1))
     ).subscribe(() => {
+      console.log(this.router.url)
       this.pages.forEach((page) => {
         page.active = false
-        if (this.router.url.indexOf(page.routerLink) > -1) page.active = true
+        if (this.router.url.indexOf(page.routerLink) > -1) {
+          page.active = true
+          this.sideNavService.currentNav.next(page.caption)
+        }
       })
     })
   }

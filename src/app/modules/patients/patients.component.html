@@ -1,50 +1,80 @@
 <h1 class="tui-text_h6">Patients</h1>
-<div class="filters row mb-3">
-  <tui-primitive-textfield
-    iconAlign="left"
-    tuiTextfieldSize="l"
-    iconContent="tuiIconSearch"
-    class="col-md-6"
-    [tuiTextfieldLabelOutside]="true"
+<div class="row justify-content-between mb-3 filters">
+  <div class="col-md-6">
+    <tui-primitive-textfield
+      iconAlign="left"
+      tuiTextfieldSize="l"
+      iconContent="tuiIconSearch"
+      [tuiTextfieldLabelOutside]="true"
     >
-    {{ 'SEARCH' | translate }}
-  </tui-primitive-textfield>
-  <div class="justify-content-end">
-
+      {{ "SEARCH" | translate }} {{ "PATIENT" | translate }}
+    </tui-primitive-textfield>
+  </div>
+  <div class="d-flex justify-content-lg-end col-auto row">
+    <button
+      class="col-auto mx-2 mb-2"
+      tuiButton
+      type="button"
+      appearance="secondary"
+      icon="tuiIconPlus"
+    >
+      Add Patient
+    </button>
   </div>
 </div>
 <div class="row">
-  <table tuiTable [columns]="columns">
-    <thead>
-      <tr tuiThGroup>
-        <th *tuiHead="'name'" tuiTh [resizable]="true">Name</th>
-        <th *tuiHead="'phonenumber'" tuiTh [resizable]="true">Phone number</th>
-        <th *tuiHead="'email'" tuiTh [resizable]="true">E-Mail</th>
-        <th *tuiHead="'nextAppointment'" tuiTh [resizable]="true">Next Appointment</th>
-        <th *tuiHead="'actions'" [sorter]="null" tuiTh></th>
-      </tr>
-    </thead>
-    <tbody tuiTbody [data]="data"
+  <div class="col">
+    <tui-island
       [class.tui-skeleton]="loadingService.initialLoading$ | async"
-      [class.fade-in-animated]="!(loadingService.initialLoading$ | async)">
-      <tr *tuiRow="let item of data" tuiTr>
-        <td *tuiCell="'name'" tuiTd>{{ item.name }}</td>
-        <td *tuiCell="'phonenumber'" tuiTd>{{ item.name }}</td>
-        <td *tuiCell="'email'" tuiTd>{{ item.name }}</td>
-        <td *tuiCell="'nextAppointment'" tuiTd>{{ item.name }}</td>
-        <td *tuiCell="'actions'" tuiTd>
-          <button
-            tuiIconButton
-            appearance="flat"
-            size="s"
-            icon="tuiIconTrash"
-            title="Remove"
-            shape="rounded"
-            class="remove"
-            (click)="remove(item)">
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+      [class.fade-in-animated]="!(loadingService.initialLoading$ | async)"
+    >
+      <table class="tui-table">
+        <thead>
+          <tr class="tui-table__tr">
+            <th class="tui-table__th">Title</th>
+            <th class="tui-table__th">Author</th>
+            <th class="tui-table__th">Date</th>
+            <th class="tui-table__th">Platform</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="tui-table__tr" *ngFor="let item of tableData"  [tuiDropdownContext]="contextMenu">
+            <td class="tui-table__td">{{ item.name }}</td>
+            <td class="tui-table__td">{{ item.phonenumber }}</td>
+            <td class="tui-table__td">{{ item.email }}</td>
+            <td class="tui-table__td">{{ item.nextAppointment }}</td>
+
+            <ng-template
+              #contextMenu
+              let-close="close"
+              let-activeZone="activeZone"
+            >
+              <tui-data-list
+                role="menu"
+                tuiDataListDropdownManager
+                class="context-menu"
+                [tuiActiveZoneParent]="activeZone"
+              >
+                <button *ngFor="let item of menuItems" tuiOption>
+                  {{ item.title }}
+                  <tui-svg class="icon" [src]="item.iconName"></tui-svg>
+                </button>
+              </tui-data-list>
+
+              <ng-template #nestedMenu>
+                <tui-data-list
+                  tuiDataListDropdownManager
+                  [tuiActiveZoneParent]="activeZone"
+                >
+                  <button *ngFor="let option of moreOptions" tuiOption>
+                    {{ option }}
+                  </button>
+                </tui-data-list>
+              </ng-template>
+            </ng-template>
+          </tr>
+        </tbody>
+      </table>
+    </tui-island>
+  </div>
 </div>

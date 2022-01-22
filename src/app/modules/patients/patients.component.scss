@@ -2,10 +2,6 @@ table {
   width: 100%;
 }
 
-.filters {
-}
-
-
 .remove {
   opacity: 0;
 
@@ -13,4 +9,8 @@ table {
   tr:focus-within & {
       opacity: 1;
   }
+}
+
+tbody tr {
+  cursor: pointer;
 }

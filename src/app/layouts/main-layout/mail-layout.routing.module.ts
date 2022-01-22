@@ -17,20 +17,14 @@ export const routes: Routes = [
         loadChildren: () =>
           import('../../modules/dashboard/dashboard.module').then(
             (m) => m.DashboardModule
-          ),
-        data: {
-          title: 'Dashboard'
-        }
+          )
       },
       {
         path: 'patients',
         loadChildren: () =>
           import('../../modules/patients/patients.module').then(
             (m) => m.PatientsModule
-          ),
-        data: {
-          title: 'Patients'
-        }
+          )
       },
     ],
   }

@@ -1,3 +1,4 @@
+import { SideNavService } from './side-nav-content/side-nav.service';
 import { debounceTime, take, delay } from 'rxjs/operators'
 import { ActivatedRoute, NavigationStart, Router } from '@angular/router'
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
@@ -30,31 +31,21 @@ export class MainLayoutComponent implements OnInit {
   constructor(
     public authService: AuthenticationService,
     private router: Router,
-    private route: ActivatedRoute,
-    private backend: BackendService
+    private backend: BackendService,
+    private sideNavService: SideNavService
   ) {
     this.authService.refreshUser()
     this.backend.getTenants()
   }
 
   ngOnInit(): void {
-    merge(
-      of(new NavigationStart(undefined, '')).pipe(take(1)),
-      this.router.events
-    )
-    .subscribe((res) => {
-      if (!(res instanceof NavigationStart)) {
-        return
-      }
-
-      const breadcrumbRoute = {
-        caption: this.route.snapshot.routeConfig.children.find((child) => {
-          return `/${child.path}` === this.router.url
-        }).data.title,
-        routerLink: this.router.url
-      }
-      this.breadcrumbRoutes[1] = breadcrumbRoute
-    })
+    this.sideNavService.currentNav
+      .subscribe((val: string) => {
+        this.breadcrumbRoutes[1] = {
+          caption: val,
+          routerLink: this.router.url
+        }
+      })
   }
 
   toggleSideNav(open: boolean): void {

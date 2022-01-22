@@ -5,8 +5,11 @@ import { RouterModule, Routes } from '@angular/router';
 import {TuiTableModule} from '@taiga-ui/addon-table';
 import { TaigaUiModule } from 'src/app/shared/taiga-ui.module';
 import { TranslationsModule } from 'src/app/shared/translations.module';
-import { TuiTextfieldControllerModule } from '@taiga-ui/core';
+import { TuiSvgModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { EditPatientComponent } from './edit-patient/edit-patient.component';
+import {TuiDropdownContextModule, TuiIslandModule} from '@taiga-ui/kit';
+import {TuiDataListModule} from '@taiga-ui/core';
+import {TuiActiveZoneModule} from '@taiga-ui/cdk';
 
 export const routes: Routes = [
   { path: '', component: PatientsComponent },
@@ -23,6 +26,11 @@ export const routes: Routes = [
     TaigaUiModule,
     TranslationsModule,
     TuiTextfieldControllerModule,
+    TuiDropdownContextModule,
+    TuiIslandModule,
+    TuiDataListModule,
+    TuiSvgModule,
+    TuiActiveZoneModule
   ]
 })
 export class PatientsModule { }

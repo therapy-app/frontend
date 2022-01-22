@@ -1,6 +1,7 @@
 button {
   width: 175px;
   max-height: 50px;
+  white-space: nowrap;
 }
 
 tui-island {
@@ -8,13 +9,13 @@ tui-island {
   &.short {
     height: calc(100% - 32.5px);
     min-height: 150px;
+    tui-line-chart {
+      height: 75px;
+    }
   }
   .chart {
     display: flex;
     align-items: center;
-    tui-line-chart {
-      height: 75px;
-    }
   }
 }
 
@@ -30,6 +31,9 @@ tui-line-chart {
   height: 12.5rem;
   width: 100%;
   color: #bc71c9;
+  &.worked-hours {
+    color: #80ed99;
+  }
 }
 
 .welcome-text {

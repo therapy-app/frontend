@@ -12,6 +12,11 @@
 html, body { height: 100%; }
 body { margin: 0; }
 
+
+tui-wrapper[data-appearance='secondary'] {
+  background: #e0e7ff !important;
+}
+
 .fade-in-animated {
   animation: fadeInAnimation ease .5s;
   animation-iteration-count: 1;
