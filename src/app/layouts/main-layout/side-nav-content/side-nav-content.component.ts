@@ -14,9 +14,6 @@ import { merge } from 'rxjs';
 export class SideNavContentComponent implements OnInit {
   public sideNavState = true
   public linkText = true
-
-  currentTenantName = ''
-
   public pages: any[] = [
     {
       caption: 'Dashboard',
@@ -42,16 +39,7 @@ export class SideNavContentComponent implements OnInit {
     public authService: AuthenticationService,
     private sideNavService: SideNavService,
     private backendService: BackendService
-  ) {
-    authService.currentUser$.subscribe((user) => {
-      if (!user.selectedTenant) return
-      backendService.tenants$
-        .subscribe((tenants) => {
-          if (!tenants.length) return
-          this.currentTenantName = tenants.find(tenant => tenant.id === this.authService.currentUser.value.selectedTenant).name
-        })
-    })
-  }
+  ) {}
 
   ngOnInit(): void {
     merge(
@@ -67,10 +55,6 @@ export class SideNavContentComponent implements OnInit {
         }
       })
     })
-  }
-
-  changeTenant(): void {
-    this.open = false
   }
 
   createTenant(): void {

@@ -12,9 +12,6 @@ export class BackendService {
 
   baseUrl = environment.apiBaseUrl
 
-  tenants = new BehaviorSubject<{ name: string, id: string }[]>([])
-  tenants$ = this.tenants.asObservable()
-
   constructor(private http: HttpClient) { }
 
   getPatients(): Observable<Patient[]> {
@@ -23,11 +20,6 @@ export class BackendService {
 
   getUser(id: string): Observable<User> {
     return this.http.get<User>(`${this.baseUrl}/users/${id}`, { withCredentials: true })
-  }
-
-  getTenants(): void {
-    this.http.get<{ name: string, id: string }[]>(`${this.baseUrl}/tenants`, { withCredentials: true })
-      .subscribe((tenants) => this.tenants.next(tenants))
   }
 
   createTenant(model: { name: string }): Observable<{}> {

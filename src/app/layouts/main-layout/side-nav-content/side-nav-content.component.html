@@ -2,37 +2,6 @@
   <div class="logo">
     <img src="../../../../assets/images/logo.png" alt="Logo of therapyapp">
   </div>
-  <!-- <tui-hosted-dropdown [content]="dropdown" [(open)]="open" class="tenant-selection">
-    <div class="wrapper">
-      <div class="tui-text_body-m">
-        {{ currentTenantName }}
-      </div>
-      <tui-svg
-        src="tuiIconChevronDownLarge"
-        class="arrow"
-        [class.open]="open"
-        >
-      </tui-svg>
-    </div>
-  </tui-hosted-dropdown>
-  <ng-template #dropdown>
-    <tui-data-list>
-      <tui-opt-group>
-        <button
-        *ngFor="let tenant of backendService.tenants$ | async"
-        tuiOption
-        (click)="changeTenant(tenant)"
-        [class.active]="authService.currentUser.value.selectedTenant === tenant.id"
-        >
-        {{ tenant.name }} <tui-svg src="tuiIconUsers"></tui-svg>
-      </button>
-    </tui-opt-group>
-    <tui-opt-group class="tenant-actions">
-      <button tuiOption (click)="joinTenant()">Join Practice</button>
-      <button tuiOption (click)="createTenant()">Create Practice</button>
-    </tui-opt-group>
-    </tui-data-list>
-  </ng-template> -->
   <div fxLayout="column" fxLayoutGap="10px" class="content">
     <tui-accordion [rounded]="false">
       <tui-accordion-item

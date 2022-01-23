@@ -35,7 +35,6 @@ export class MainLayoutComponent implements OnInit {
     private sideNavService: SideNavService
   ) {
     this.authService.refreshUser()
-    this.backend.getTenants()
   }
 
   ngOnInit(): void {

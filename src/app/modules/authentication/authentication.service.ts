@@ -11,7 +11,7 @@ import { BackendService } from 'src/app/services/backend.service'
 })
 export class AuthenticationService {
 
-  currentUser = new BehaviorSubject<User>({ fullName: '', selectedTenant: '' })
+  currentUser = new BehaviorSubject<User>({ fullName: '' })
   currentUser$ = this.currentUser.asObservable()
   baseUrl = environment.apiBaseUrl
 
@@ -32,7 +32,7 @@ export class AuthenticationService {
   signOut(): Observable<{}> {
     return this.httpClient.post(`${this.baseUrl}/auth/signout`, {}, { withCredentials: true })
       .pipe(tap(() => {
-        this.currentUser.next({ fullName: '', selectedTenant: '' })
+        this.currentUser.next({ fullName: '' })
         localStorage.setItem('userId', '')
       }))
   }
