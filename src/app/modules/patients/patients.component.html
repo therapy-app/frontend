@@ -42,7 +42,7 @@
           </tr>
         </thead>
         <tbody tuiTbody [data]="tableData">
-          <tr class="tui-table__tr" *tuiRow="let item of tableData;" tuiTr [tuiDropdownContext]="contextMenu">
+          <tr class="tui-table__tr" *tuiRow="let item of tableData;" tuiTr [tuiDropdownContext]="contextMenu" routerLink="details">
             <td class="tui-table__td" *tuiCell="'name'">{{ item.name }}</td>
             <td class="tui-table__td" *tuiCell="'phonenumber'">{{ item.phonenumber }}</td>
             <td class="tui-table__td" *tuiCell="'email'">{{ item.email }}</td>

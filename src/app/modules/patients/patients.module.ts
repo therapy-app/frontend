@@ -11,15 +11,18 @@ import {TuiDropdownContextModule, TuiIslandModule} from '@taiga-ui/kit';
 import {TuiDataListModule} from '@taiga-ui/core';
 import {TuiActiveZoneModule} from '@taiga-ui/cdk';
 import {TuiTablePaginationModule} from '@taiga-ui/addon-table';
+import { DetailsPatientComponent } from './details-patient/details-patient.component';
+import {TuiTabsModule} from '@taiga-ui/kit';
+import {TuiLabelModule} from '@taiga-ui/core';
 
 export const routes: Routes = [
   { path: '', component: PatientsComponent },
-  { path: 'add', component: EditPatientComponent },
+  { path: 'details', component: DetailsPatientComponent },
 ]
 
 
 @NgModule({
-  declarations: [PatientsComponent, EditPatientComponent],
+  declarations: [PatientsComponent, EditPatientComponent, DetailsPatientComponent],
   imports: [
     CommonModule,
     TuiTableModule,
@@ -32,7 +35,9 @@ export const routes: Routes = [
     TuiDataListModule,
     TuiSvgModule,
     TuiActiveZoneModule,
-    TuiTablePaginationModule
+    TuiTablePaginationModule,
+    TuiTabsModule,
+    TuiLabelModule
   ]
 })
 export class PatientsModule { }

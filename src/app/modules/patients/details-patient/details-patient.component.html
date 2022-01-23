@@ -1,0 +1,31 @@
+<tui-tabs [(activeItemIndex)]="activeItemIndex" class="mb-2">
+  <button tuiTab>General</button>
+  <button tuiTab>Observations</button>
+  <button tuiTab>Findings</button>
+  <button tuiTab>Data Store</button>
+</tui-tabs>
+<tui-island
+  [class.tui-skeleton]="loadingService.initialLoading$ | async"
+  [class.fade-in-animated]="!(loadingService.initialLoading$ | async)"
+>
+  <h3 class="tui-island__category">Contact information</h3>
+  <div class="row">
+    <div class="col-3">
+      <label tuiLabel label="Full name">{{ patientContatInfo.fullName }}</label>
+      <label tuiLabel label="Email">{{ patientContatInfo.fullName }}</label>
+      <label tuiLabel label="Phonenumber">{{ patientContatInfo.fullName }}</label>
+    </div>
+    <div class="col-3">
+      <label tuiLabel label="Country">{{ patientContatInfo.fullName }}</label>
+      <label tuiLabel label="Address">{{ patientContatInfo.fullName }}</label>
+    </div>
+    <div class="col-3">
+      <label tuiLabel label="City">{{ patientContatInfo.fullName }}</label>
+      <label tuiLabel label="Postalcode">{{ patientContatInfo.fullName }}</label>
+    </div>
+    <div class="col-3">
+      <label tuiLabel label="Diagnosis">{{ patientContatInfo.fullName }}</label>
+      <label tuiLabel label="Treatment started">{{ patientContatInfo.fullName }}</label>
+    </div>
+  </div>
+</tui-island>
