@@ -1,3 +1,4 @@
+import { FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditPatientComponent implements OnInit {
 
-  constructor() { }
+  patientForm = this.fb.group({
+    test: ['']
+  })
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
+  }
+
+  addPatient(): void {
+
   }
 
 }

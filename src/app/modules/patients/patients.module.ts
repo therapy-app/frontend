@@ -10,6 +10,7 @@ import { EditPatientComponent } from './edit-patient/edit-patient.component';
 import {TuiDropdownContextModule, TuiIslandModule} from '@taiga-ui/kit';
 import {TuiDataListModule} from '@taiga-ui/core';
 import {TuiActiveZoneModule} from '@taiga-ui/cdk';
+import {TuiTablePaginationModule} from '@taiga-ui/addon-table';
 
 export const routes: Routes = [
   { path: '', component: PatientsComponent },
@@ -30,7 +31,8 @@ export const routes: Routes = [
     TuiIslandModule,
     TuiDataListModule,
     TuiSvgModule,
-    TuiActiveZoneModule
+    TuiActiveZoneModule,
+    TuiTablePaginationModule
   ]
 })
 export class PatientsModule { }

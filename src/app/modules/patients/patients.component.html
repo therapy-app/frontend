@@ -1,5 +1,5 @@
-<h1 class="tui-text_h6">Patients</h1>
-<div class="row justify-content-between mb-3 filters">
+<h1 class="tui-text_h6">Patients ({{ tableData.length }})</h1>
+<div class="row justify-content-between mb-3">
   <div class="col-md-6">
     <tui-primitive-textfield
       iconAlign="left"
@@ -10,16 +10,20 @@
       {{ "SEARCH" | translate }} {{ "PATIENT" | translate }}
     </tui-primitive-textfield>
   </div>
-  <div class="d-flex justify-content-lg-end col-auto row">
-    <button
-      class="col-auto mx-2 mb-2"
-      tuiButton
-      type="button"
-      appearance="secondary"
-      icon="tuiIconPlus"
-    >
-      Add Patient
-    </button>
+  <div class="col-auto">
+    <div class="row justify-content-lg-end">
+      <div class="col-auto mb-2">
+        <button
+          tuiButton
+          type="button"
+          appearance="secondary"
+          icon="tuiIconPlus"
+          (click)="addPatient()"
+        >
+          Add Patient
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 <div class="row">
@@ -28,21 +32,21 @@
       [class.tui-skeleton]="loadingService.initialLoading$ | async"
       [class.fade-in-animated]="!(loadingService.initialLoading$ | async)"
     >
-      <table class="tui-table">
-        <thead>
-          <tr class="tui-table__tr">
-            <th class="tui-table__th">Title</th>
-            <th class="tui-table__th">Author</th>
-            <th class="tui-table__th">Date</th>
-            <th class="tui-table__th">Platform</th>
+      <table class="tui-table" tuiTable [columns]="columns">
+        <thead tuiThead>
+          <tr class="tui-table__tr" tuiThGroup>
+            <th class="tui-table__th" *tuiHead="'name'" tuiTh>Name</th>
+            <th class="tui-table__th" *tuiHead="'phonenumber'" tuiTh>Phonenumber</th>
+            <th class="tui-table__th" *tuiHead="'email'" tuiTh>Email</th>
+            <th class="tui-table__th" *tuiHead="'nextAppointment'" tuiTh>Next Appointment</th>
           </tr>
         </thead>
-        <tbody>
-          <tr class="tui-table__tr" *ngFor="let item of tableData"  [tuiDropdownContext]="contextMenu">
-            <td class="tui-table__td">{{ item.name }}</td>
-            <td class="tui-table__td">{{ item.phonenumber }}</td>
-            <td class="tui-table__td">{{ item.email }}</td>
-            <td class="tui-table__td">{{ item.nextAppointment }}</td>
+        <tbody tuiTbody [data]="tableData">
+          <tr class="tui-table__tr" *tuiRow="let item of tableData;" tuiTr [tuiDropdownContext]="contextMenu">
+            <td class="tui-table__td" *tuiCell="'name'">{{ item.name }}</td>
+            <td class="tui-table__td" *tuiCell="'phonenumber'">{{ item.phonenumber }}</td>
+            <td class="tui-table__td" *tuiCell="'email'">{{ item.email }}</td>
+            <td class="tui-table__td" *tuiCell="'nextAppointment'">{{ item.nextAppointment }}</td>
 
             <ng-template
               #contextMenu
@@ -74,6 +78,19 @@
             </ng-template>
           </tr>
         </tbody>
+        <tfoot *ngIf="tableData.length > 10">
+          <tr>
+            <td [colSpan]="columns.length">
+                <tui-table-pagination
+                    class="tui-space_top-2"
+                    [size]="10"
+                    [total]="tableData.length"
+                    (pageChange)="onPage($event)"
+                    (sizeChange)="onSize($event)"
+                ></tui-table-pagination>
+            </td>
+          </tr>
+      </tfoot>
       </table>
     </tui-island>
   </div>

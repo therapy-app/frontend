@@ -1,1 +1,49 @@
-<p>edit-patient works!</p>
+<form [formGroup]="patientForm" (ngSubmit)="addPatient()">
+  <div class="tui-form__row">
+    <tui-input>Full name</tui-input>
+  </div>
+  <div class="tui-form__row tui-form__row_multi-fields">
+    <div class="tui-form__multi-field">
+      <tui-input>Email</tui-input>
+    </div>
+    <div class="tui-form__multi-field">
+      <tui-input>Phonenumber</tui-input>
+    </div>
+  </div>
+  <div class="tui-form__row tui-form__row_multi-fields">
+    <div class="tui-form__multi-field">
+      <tui-input>Coutry</tui-input>
+    </div>
+    <div class="tui-form__multi-field">
+      <tui-input>Street</tui-input>
+    </div>
+  </div>
+  <div class="tui-form__row tui-form__row_multi-fields">
+    <div class="tui-form__multi-field">
+      <tui-input>City</tui-input>
+    </div>
+    <div class="tui-form__multi-field">
+      <tui-input>Postalcode</tui-input>
+    </div>
+  </div>
+  <div class="tui-form__row">
+    <tui-input>Diagnose</tui-input>
+  </div>
+  <div class="tui-form__row">
+    <tui-input>Therapy cause</tui-input>
+  </div>
+  <div class="tui-form__buttons">
+    <button tuiButton size="l" type="submit" class="tui-form__button">
+      Submit
+    </button>
+    <button
+      tuiButton
+      type="button"
+      appearance="flat"
+      size="l"
+      class="tui-form__button"
+    >
+      Cancel
+    </button>
+  </div>
+</form>

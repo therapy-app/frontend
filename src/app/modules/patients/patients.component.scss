@@ -1,16 +1,15 @@
 table {
   width: 100%;
-}
+  border-collapse: collapse !important;
 
-.remove {
-  opacity: 0;
-
-  tr:hover &,
-  tr:focus-within & {
-      opacity: 1;
+  tbody thead tr {
+    border-bottom: 1px solid var(--tui-base-03);
   }
-}
-
-tbody tr {
-  cursor: pointer;
+  thead th {
+    border: 0;
+    padding: 1rem 1rem 0.875rem;
+  }
+  tbody tr {
+    cursor: pointer;
+  }
 }
