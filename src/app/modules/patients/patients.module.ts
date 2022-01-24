@@ -7,7 +7,7 @@ import { TaigaUiModule } from 'src/app/shared/taiga-ui.module';
 import { TranslationsModule } from 'src/app/shared/translations.module';
 import { TuiSvgModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { EditPatientComponent } from './edit-patient/edit-patient.component';
-import {TuiDropdownContextModule, TuiIslandModule} from '@taiga-ui/kit';
+import {TuiAvatarModule, TuiDropdownContextModule, TuiIslandModule} from '@taiga-ui/kit';
 import {TuiDataListModule} from '@taiga-ui/core';
 import {TuiActiveZoneModule} from '@taiga-ui/cdk';
 import {TuiTablePaginationModule} from '@taiga-ui/addon-table';
@@ -37,7 +37,8 @@ export const routes: Routes = [
     TuiActiveZoneModule,
     TuiTablePaginationModule,
     TuiTabsModule,
-    TuiLabelModule
+    TuiLabelModule,
+    TuiAvatarModule
   ]
 })
 export class PatientsModule { }
