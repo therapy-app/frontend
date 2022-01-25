@@ -14,6 +14,7 @@ import {TuiTablePaginationModule} from '@taiga-ui/addon-table';
 import { DetailsPatientComponent } from './details-patient/details-patient.component';
 import {TuiTabsModule} from '@taiga-ui/kit';
 import {TuiLabelModule} from '@taiga-ui/core';
+import {TuiAccordionModule} from '@taiga-ui/kit';
 
 export const routes: Routes = [
   { path: '', component: PatientsComponent },
@@ -38,7 +39,8 @@ export const routes: Routes = [
     TuiTablePaginationModule,
     TuiTabsModule,
     TuiLabelModule,
-    TuiAvatarModule
+    TuiAvatarModule,
+    TuiAccordionModule
   ]
 })
 export class PatientsModule { }

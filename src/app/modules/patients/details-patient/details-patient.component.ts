@@ -29,6 +29,33 @@ export class DetailsPatientComponent implements OnInit {
     employer: 'Google'
   }
 
+  series = {
+    start: new Date().toLocaleDateString(),
+    end: new Date().toLocaleDateString(),
+  }
+
+  otherInfo = {
+    diagnosis: 'Scoliosis',
+    treatmentArea: 'Lower Back'
+  }
+
+  preferredDates = [
+    {
+      weekday: 'Mondays',
+      timeRangeStart: new Date().toLocaleTimeString(),
+      timeRangeEnd: new Date().toLocaleTimeString()
+    },
+    {
+      weekday: 'Wednesdays',
+      timeRangeStart: new Date().toLocaleTimeString(),
+      timeRangeEnd: new Date().toLocaleTimeString()
+    },
+    {
+      weekday: 'Fridays',
+      timeRangeStart: new Date().toLocaleTimeString(),
+      timeRangeEnd: new Date().toLocaleTimeString()
+    },
+  ]
 
   activeItemIndex = 0;
 
