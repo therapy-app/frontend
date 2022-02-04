@@ -16,7 +16,6 @@ import { HttpClient, HttpClientModule, HttpClientXsrfModule, HTTP_INTERCEPTORS }
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
-import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 import { AddCsrfHeaderInterceptorService } from './core/interceptor/add-csrf-header-interceptor.service';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
