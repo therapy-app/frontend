@@ -1,0 +1,21 @@
+<div class="row mb-3 appointment" *ngFor="let appointment of appointments">
+  <div
+    class="col-md-2 mb-2"
+    [class.fade-in-animated]="!(loadingService.initialLoading$ | async)"
+  >
+    <h3 class="tui-island__category" [class.tui-skeleton]="loadingService.initialLoading$ | async">{{ appointment.date }}</h3>
+    <h3 class="mb-2" [class.tui-skeleton]="loadingService.initialLoading$ | async">{{ appointment.title }}</h3>
+    <p class="tui-island__paragraph" [class.tui-skeleton]="loadingService.initialLoading$ | async">{{ appointment.duration }} min</p>
+  </div>
+  <div class="col-md-10">
+    <tui-island
+      [class.tui-skeleton]="loadingService.initialLoading$ | async"
+      [class.fade-in-animated]="!(loadingService.initialLoading$ | async)"
+    >
+      <h3 class="tui-island__category">Process report</h3>
+      <p class="tui-island__paragraph">
+        {{ appointment.report }}
+      </p>
+    </tui-island>
+  </div>
+</div>
