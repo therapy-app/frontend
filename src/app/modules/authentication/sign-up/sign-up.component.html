@@ -1,7 +1,7 @@
 <form [formGroup]="accountDetailsForm" (ngSubmit)="onSubmit()">
   <h1>Welcome! Lets setup your account.</h1>
   <div class="tui-form__row">
-    <tui-input formControlName="fullname">
+    <tui-input formControlName="fullname" minlength="3">
       {{ "ACCOUNT.FULL_NAME" | translate }}
       <span class="tui-required"></span>
     </tui-input>
