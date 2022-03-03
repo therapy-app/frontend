@@ -15,6 +15,7 @@ import { DetailsPatientComponent } from './details-patient/details-patient.compo
 import {TuiTabsModule} from '@taiga-ui/kit';
 import {TuiLabelModule} from '@taiga-ui/core';
 import {TuiAccordionModule} from '@taiga-ui/kit';
+import { GeneralComponent } from './details-patient/general/general.component';
 
 export const routes: Routes = [
   { path: '', component: PatientsComponent },
@@ -23,7 +24,7 @@ export const routes: Routes = [
 
 
 @NgModule({
-  declarations: [PatientsComponent, EditPatientComponent, DetailsPatientComponent],
+  declarations: [PatientsComponent, EditPatientComponent, DetailsPatientComponent, GeneralComponent],
   imports: [
     CommonModule,
     TuiTableModule,

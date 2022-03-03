@@ -1,0 +1,106 @@
+<div class="row">
+  <div class="col-md-4 mb-3">
+    <tui-island
+      [class.tui-skeleton]="loadingService.initialLoading$ | async"
+      [class.fade-in-animated]="!(loadingService.initialLoading$ | async)"
+    >
+      <h3 class="tui-island__category">Personal information</h3>
+      <div class="row">
+        <div class="col-auto">
+          <tui-avatar size="xl" [text]="personalInfo.fullName"></tui-avatar>
+        </div>
+        <div class="col-auto">
+          <label tuiLabel label="Full name">{{ personalInfo.fullName }}</label>
+          <label tuiLabel label="Birthdate">{{ personalInfo.birthdate }}</label>
+          <label tuiLabel label="Gender">{{ personalInfo.gender }}</label>
+        </div>
+      </div>
+    </tui-island>
+  </div>
+  <div class="col-md-8 mb-3">
+    <tui-island
+      [class.tui-skeleton]="loadingService.initialLoading$ | async"
+      [class.fade-in-animated]="!(loadingService.initialLoading$ | async)"
+    >
+      <h3 class="tui-island__category">Contact information</h3>
+      <div class="row">
+        <div class="col-4">
+          <label tuiLabel label="Phonenumber">{{
+            contactInfo.phonenumber
+          }}</label>
+          <label tuiLabel label="Email">{{ contactInfo.email }}</label>
+        </div>
+        <div class="col-4">
+          <label tuiLabel label="City">{{ contactInfo.city }}</label>
+          <label tuiLabel label="Address">{{ contactInfo.address }}</label>
+        </div>
+        <div class="col-4">
+          <label tuiLabel label="Postalcode">{{ contactInfo.postalcode }}</label>
+          <label tuiLabel label="Canton">{{ contactInfo.city }}</label>
+          <label tuiLabel label="Country">{{ contactInfo.country }}</label>
+        </div>
+      </div>
+    </tui-island>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6 mb-3">
+    <tui-island
+    [class.tui-skeleton]="loadingService.initialLoading$ | async"
+    [class.fade-in-animated]="!(loadingService.initialLoading$ | async)"
+    >
+    <h3 class="tui-island__category">Other</h3>
+    <tui-island class="mb-3">
+      <div class="row">
+        <div class="col-6">
+          <label tuiLabel label="Diagnosis">{{ otherInfo.diagnosis }}</label>
+        </div>
+        <div class="col-6">
+          <label tuiLabel label="Treatment area">{{ otherInfo.treatmentArea }}</label>
+        </div>
+      </div>
+    </tui-island>
+    <tui-accordion-item class="mb-2">
+        <label tuiLabel label="Current series">{{ series.start }} - {{ series.end }}, 9 appointments</label>
+        <ng-template tuiAccordionItemContent>
+          <div>Appt. 1</div>
+          <div>Appt. 1</div>
+          <div>Appt. 1</div>
+          <div>Appt. 1</div>
+          <div>Appt. 1</div>
+        </ng-template>
+      </tui-accordion-item>
+      <tui-accordion-item class="mb-2">
+        Preffered dates
+        <ng-template tuiAccordionItemContent>
+          <div *ngFor="let date of preferredDates">
+            {{ date.weekday }}: {{ date.timeRangeStart }} - {{ date.timeRangeEnd }}
+          </div>
+        </ng-template>
+      </tui-accordion-item>
+    </tui-island>
+  </div>
+  <div class="col-md-6 mb-3">
+    <tui-island
+      [class.tui-skeleton]="loadingService.initialLoading$ | async"
+      [class.fade-in-animated]="!(loadingService.initialLoading$ | async)"
+    >
+      <h3 class="tui-island__category">Timeline</h3>
+      <ul class="tui-list">
+        <li class="tui-list__item">Created new appointment</li>
+        <li class="tui-list__item">Created new appointment</li>
+        <li class="tui-list__item">Created new appointment</li>
+        <li class="tui-list__item">Created new appointment</li>
+        <li class="tui-list__item">Created new appointment</li>
+        <li class="tui-list__item">Created new appointment</li>
+        <li class="tui-list__item">Created new appointment</li>
+        <li class="tui-list__item">Created new appointment</li>
+        <li class="tui-list__item">Created new appointment</li>
+        <li class="tui-list__item">Created new appointment</li>
+        <li class="tui-list__item">Created new appointment</li>
+        <li class="tui-list__item">Created new appointment</li>
+        <li class="tui-list__item">Created new appointment</li>
+      </ul>
+    </tui-island>
+  </div>
+</div>
